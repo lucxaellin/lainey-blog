@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 function FloatingHearts() {
   const items = ["🌸","💗","✨","🎀","💕","⭐","🌷","💖","🩷","🌺"];
@@ -33,17 +33,117 @@ const weekBlogs = {
   "Week 12": { emoji:"🎓", content:"Final project week! Put everything together - frontend, backend, database, and deployment. Feeling proud of how far I've come and excited for what's next! 🌟" },
 };
 
-const photoWeeks = ["Week 1","Week 2","Week 3","Week 4","Week 5","Week 6"];
-const placeholderColors = ["#fce7f3","#fef3c7","#d1fae5","#dbeafe","#ede9fe","#fce7f3"];
+const photoWeeks = ["Week 1","Week 2","Week 3","Week 4","Week 5","Week 6","Week 7","Week 8","Week 9","Week 10","Week 11","Week 12"];
+const placeholderColors = ["#fce7f3","#fef3c7","#d1fae5","#dbeafe","#ede9fe","#fce7f3","#fef3c7","#d1fae5","#dbeafe","#ede9fe","#fce7f3","#fef3c7"];
+
+// Different photos for each week
+const weekPhotos = {
+  "Week 1": [
+    { id:1, src:"https://picsum.photos/seed/week1-1/300/300.jpg", color:"#fce7f3", label:"Setup Day 🖥️" },
+    { id:2, src:"https://picsum.photos/seed/week1-2/300/300.jpg", color:"#fef3c7", label:"First Code 💻" },
+    { id:3, src:"https://picsum.photos/seed/week1-3/300/300.jpg", color:"#d1fae5", label:"Learning 📚" },
+    { id:4, src:"https://picsum.photos/seed/week1-4/300/300.jpg", color:"#dbeafe", label:"Environment 🌱" },
+    { id:5, src:"https://picsum.photos/seed/week1-5/300/300.jpg", color:"#ede9fe", label:"Tools 🔧" },
+    { id:6, src:"https://picsum.photos/seed/week1-6/300/300.jpg", color:"#fce7f3", label:"Progress 📈" },
+  ],
+  "Week 2": [
+    { id:7, src:"https://picsum.photos/seed/week2-1/300/300.jpg", color:"#fef3c7", label:"CSS Magic 🎨" },
+    { id:8, src:"https://picsum.photos/seed/week2-2/300/300.jpg", color:"#d1fae5", label:"Flexbox 📦" },
+    { id:9, src:"https://picsum.photos/seed/week2-3/300/300.jpg", color:"#dbeafe", label:"Grid Layout 📐" },
+    { id:10, src:"https://picsum.photos/seed/week2-4/300/300.jpg", color:"#ede9fe", label:"Styling ✨" },
+    { id:11, src:"https://picsum.photos/seed/week2-5/300/300.jpg", color:"#fce7f3", label:"Design 🎭" },
+    { id:12, src:"https://picsum.photos/seed/week2-6/300/300.jpg", color:"#fef3c7", label:"Colors 🌈" },
+  ],
+  "Week 3": [
+    { id:13, src:"https://picsum.photos/seed/week3-1/300/300.jpg", color:"#d1fae5", label:"JavaScript 🟨" },
+    { id:14, src:"https://picsum.photos/seed/week3-2/300/300.jpg", color:"#dbeafe", label:"Functions ⚡" },
+    { id:15, src:"https://picsum.photos/seed/week3-3/300/300.jpg", color:"#ede9fe", label:"Arrays 📋" },
+    { id:16, src:"https://picsum.photos/seed/week3-4/300/300.jpg", color:"#fce7f3", label:"Logic 🧠" },
+    { id:17, src:"https://picsum.photos/seed/week3-5/300/300.jpg", color:"#fef3c7", label:"Loops 🔄" },
+    { id:18, src:"https://picsum.photos/seed/week3-6/300/300.jpg", color:"#d1fae5", label:"Debugging 🐛" },
+  ],
+  "Week 4": [
+    { id:19, src:"https://picsum.photos/seed/week4-1/300/300.jpg", color:"#dbeafe", label:"React ⚛️" },
+    { id:20, src:"https://picsum.photos/seed/week4-2/300/300.jpg", color:"#ede9fe", label:"Hooks 🪝" },
+    { id:21, src:"https://picsum.photos/seed/week4-3/300/300.jpg", color:"#fce7f3", label:"Components 🧩" },
+    { id:22, src:"https://picsum.photos/seed/week4-4/300/300.jpg", color:"#fef3c7", label:"State 📊" },
+    { id:23, src:"https://picsum.photos/seed/week4-5/300/300.jpg", color:"#d1fae5", label:"Props 📦" },
+    { id:24, src:"https://picsum.photos/seed/week4-6/300/300.jpg", color:"#dbeafe", label:"Interactive 🎯" },
+  ],
+  "Week 5": [
+    { id:25, src:"https://picsum.photos/seed/week5-1/300/300.jpg", color:"#ede9fe", label:"Mobile 📱" },
+    { id:26, src:"https://picsum.photos/seed/week5-2/300/300.jpg", color:"#fce7f3", label:"Responsive 📐" },
+    { id:27, src:"https://picsum.photos/seed/week5-3/300/300.jpg", color:"#fef3c7", label:"Tablet 📲" },
+    { id:28, src:"https://picsum.photos/seed/week5-4/300/300.jpg", color:"#d1fae5", label:"Desktop 💻" },
+    { id:29, src:"https://picsum.photos/seed/week5-5/300/300.jpg", color:"#dbeafe", label:"Media Query 📱" },
+    { id:30, src:"https://picsum.photos/seed/week5-6/300/300.jpg", color:"#ede9fe", label:"Layout 🎨" },
+  ],
+  "Week 6": [
+    { id:31, src:"https://picsum.photos/seed/week6-1/300/300.jpg", color:"#fce7f3", label:"Debugging 🔧" },
+    { id:32, src:"https://picsum.photos/seed/week6-2/300/300.jpg", color:"#fef3c7", label:"Performance ⚡" },
+    { id:33, src:"https://picsum.photos/seed/week6-3/300/300.jpg", color:"#d1fae5", label:"Optimization 🚀" },
+    { id:34, src:"https://picsum.photos/seed/week6-4/300/300.jpg", color:"#dbeafe", label:"Clean Code 🧹" },
+    { id:35, src:"https://picsum.photos/seed/week6-5/300/300.jpg", color:"#ede9fe", label:"Tools 🛠️" },
+    { id:36, src:"https://picsum.photos/seed/week6-6/300/300.jpg", color:"#fce7f3", label:"Success 🎉" },
+  ],
+  "Week 7": [
+    { id:37, src:"https://picsum.photos/seed/week7-1/300/300.jpg", color:"#fef3c7", label:"Animations ✨" },
+    { id:38, src:"https://picsum.photos/seed/week7-2/300/300.jpg", color:"#d1fae5", label:"Transitions 🎭" },
+    { id:39, src:"https://picsum.photos/seed/week7-3/300/300.jpg", color:"#dbeafe", label:"Micro-interactions 🎯" },
+    { id:40, src:"https://picsum.photos/seed/week7-4/300/300.jpg", color:"#ede9fe", label:"UI Effects 🌟" },
+    { id:41, src:"https://picsum.photos/seed/week7-5/300/300.jpg", color:"#fce7f3", label:"Motion 🎪" },
+    { id:42, src:"https://picsum.photos/seed/week7-6/300/300.jpg", color:"#fef3c7", label:"Responsive Animations 📱" },
+  ],
+  "Week 8": [
+    { id:43, src:"https://picsum.photos/seed/week8-1/300/300.jpg", color:"#d1fae5", label:"Database 🗄️" },
+    { id:44, src:"https://picsum.photos/seed/week8-2/300/300.jpg", color:"#dbeafe", label:"SQL 💾" },
+    { id:45, src:"https://picsum.photos/seed/week8-3/300/300.jpg", color:"#ede9fe", label:"Data Modeling 📊" },
+    { id:46, src:"https://picsum.photos/seed/week8-4/300/300.jpg", color:"#fce7f3", label:"Backend 🔌" },
+    { id:47, src:"https://picsum.photos/seed/week8-5/300/300.jpg", color:"#fef3c7", label:"API Connection 🌐" },
+    { id:48, src:"https://picsum.photos/seed/week8-6/300/300.jpg", color:"#d1fae5", label:"Data Flow 🔄" },
+  ],
+  "Week 9": [
+    { id:49, src:"https://picsum.photos/seed/week9-1/300/300.jpg", color:"#dbeafe", label:"Security 🔐" },
+    { id:50, src:"https://picsum.photos/seed/week9-2/300/300.jpg", color:"#ede9fe", label:"Authentication 👤" },
+    { id:51, src:"https://picsum.photos/seed/week9-3/300/300.jpg", color:"#fce7f3", label:"JWT Tokens 🎫" },
+    { id:52, src:"https://picsum.photos/seed/week9-4/300/300.jpg", color:"#fef3c7", label:"User Safety 🛡️" },
+    { id:53, src:"https://picsum.photos/seed/week9-5/300/300.jpg", color:"#d1fae5", label:"Encryption 🔒" },
+    { id:54, src:"https://picsum.photos/seed/week9-6/300/300.jpg", color:"#dbeafe", label:"Security Best Practices 📋" },
+  ],
+  "Week 10": [
+    { id:55, src:"https://picsum.photos/seed/week10-1/300/300.jpg", color:"#ede9fe", label:"Testing 🧪" },
+    { id:56, src:"https://picsum.photos/seed/week10-2/300/300.jpg", color:"#fce7f3", label:"Unit Tests 🔬" },
+    { id:57, src:"https://picsum.photos/seed/week10-3/300/300.jpg", color:"#fef3c7", label:"Integration Tests 🔗" },
+    { id:58, src:"https://picsum.photos/seed/week10-4/300/300.jpg", color:"#d1fae5", label:"Testable Code 📝" },
+    { id:59, src:"https://picsum.photos/seed/week10-5/300/300.jpg", color:"#dbeafe", label:"Bug Prevention 🐛" },
+    { id:60, src:"https://picsum.photos/seed/week10-6/300/300.jpg", color:"#ede9fe", label:"Quality Assurance ✅" },
+  ],
+  "Week 11": [
+    { id:61, src:"https://picsum.photos/seed/week11-1/300/300.jpg", color:"#fce7f3", label:"API Integration 📊" },
+    { id:62, src:"https://picsum.photos/seed/week11-2/300/300.jpg", color:"#fef3c7", label:"External APIs 🌐" },
+    { id:63, src:"https://picsum.photos/seed/week11-3/300/300.jpg", color:"#d1fae5", label:"Async Data ⚡" },
+    { id:64, src:"https://picsum.photos/seed/week11-4/300/300.jpg", color:"#dbeafe", label:"Error Handling ⚠️" },
+    { id:65, src:"https://picsum.photos/seed/week11-5/300/300.jpg", color:"#ede9fe", label:"Real-world Apps 🏢" },
+    { id:66, src:"https://picsum.photos/seed/week11-6/300/300.jpg", color:"#fce7f3", label:"Service Communication 📡" },
+  ],
+  "Week 12": [
+    { id:67, src:"https://picsum.photos/seed/week12-1/300/300.jpg", color:"#fef3c7", label:"Final Project 🎓" },
+    { id:68, src:"https://picsum.photos/seed/week12-2/300/300.jpg", color:"#d1fae5", label:"Frontend 🎨" },
+    { id:69, src:"https://picsum.photos/seed/week12-3/300/300.jpg", color:"#dbeafe", label:"Backend 🔧" },
+    { id:70, src:"https://picsum.photos/seed/week12-4/300/300.jpg", color:"#ede9fe", label:"Database 🗄️" },
+    { id:71, src:"https://picsum.photos/seed/week12-5/300/300.jpg", color:"#fce7f3", label:"Deployment 🚀" },
+    { id:72, src:"https://picsum.photos/seed/week12-6/300/300.jpg", color:"#fef3c7", label:"Success & Future 🌟"},
+  ],
+};
 
 export default function Blog() {
   const [blogOpen, setBlogOpen] = useState(null);
   const [activeBlogWeek, setActiveBlogWeek] = useState(0);
   const [hoveredWeek, setHoveredWeek] = useState(null);
   const [activePhotoWeek, setActivePhotoWeek] = useState(0);
-  const [photos, setPhotos] = useState(
-    placeholderColors.map((c, i) => ({ id:i, color:c, src:null, label:`Photo ${i+1}` }))
-  );
+  const [currentPhotoWeek, setCurrentPhotoWeek] = useState(0);
+  const [buttonGroupStart, setButtonGroupStart] = useState(0);
+  const [photos, setPhotos] = useState(weekPhotos["Week 1"]);
 
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior:"smooth" });
 
@@ -53,6 +153,12 @@ export default function Blog() {
     const url = URL.createObjectURL(file);
     setPhotos(prev => [...prev, { id: Date.now(), src: url, color:"#fce7f3", label:`Photo ${prev.length+1}` }]);
   };
+
+  // Update photos when active photo week changes
+  React.useEffect(() => {
+    const currentWeek = photoWeeks[currentPhotoWeek];
+    setPhotos(weekPhotos[currentWeek] || []);
+  }, [currentPhotoWeek]);
 
   // Carousel helper functions
   const getScrollOffset = (activeIndex) => {
@@ -353,9 +459,9 @@ export default function Blog() {
         }
         .f-logo{font-family:'Dancing Script',cursive;font-size:1.55rem;color:var(--pink);}
         .f-links{display:flex;gap:24px;list-style:none;flex-wrap:wrap;}
-        .f-links a{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:#6b3d54;text-decoration:none;transition:color .18s;}
+        .f-links a{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:#var(--pink);text-decoration:none;transition:color .18s;}
         .f-links a:hover{color:var(--pink);}
-        .f-copy{font-size:.68rem;color:#6b3d54;letter-spacing:1px;}
+        .f-copy{font-size:.68rem;color:#var(--pink);letter-spacing:1px;}
 
         /* SPARKLES */
         .spk{position:absolute;color:var(--pink);pointer-events:none;animation:twinkle 2s ease-in-out infinite;}
@@ -366,7 +472,7 @@ export default function Blog() {
           --m: 0.4;
           --p: calc(var(--m)*var(--size));
           --R: calc(var(--size)*sqrt(var(--m)*var(--m) + 1));
-          height: 100px; /* Adjust height as needed */
+          height: 100px;
           background: linear-gradient(
             to right, 
             #fbf4f2 0%,   /* Soft Cream Left */
@@ -393,12 +499,54 @@ export default function Blog() {
           mask:
             radial-gradient(var(--R) at left 50% top calc(var(--size) + var(--p)), #0000 99%, #000 101%) 
               calc(50% - 2 * var(--size)) 0/calc(4 * var(--size)) 100%,
-            radial-gradient(var(--R) at left 50% top calc(-1 * var(--p)), #000 99%, #0000 101%) 
+            radial-gradient(var(--R) at left 50% top calc(-1 * var(--p)), #000 99%, #000 101%) 
               left 50% top var(--size) / calc(4 * var(--size)) 100% repeat-x;
           -webkit-mask:
             radial-gradient(var(--R) at left 50% top calc(var(--size) + var(--p)), #0000 99%, #000 101%) 
               calc(50% - 2 * var(--size)) 0/calc(4 * var(--size)) 100%,
-            radial-gradient(var(--R) at left 50% top calc(-1 * var(--p)), #000 99%, #0000 101%) 
+            radial-gradient(var(--R) at left 50% top calc(-1 * var(--p)), #000 99%, #000 101%) 
+              left 50% top var(--size) / calc(4 * var(--size)) 100% repeat-x;
+        }
+
+        /*change this*/
+        /* VIDEOS TO CONCLUSION WAVE DIVIDER */
+        .wave-divider-videos{
+          --size: 60px;
+          --m: 0.4;
+          --p: calc(var(--m)*var(--size));
+          --R: calc(var(--size)*sqrt(var(--m)*var(--m) + 1));
+          height: 100px;
+          background: linear-gradient(
+              to right, 
+              #f4effa 0%,   /* Pale Lavender Left */
+              #f7f0f9 30%,  /* Light Thistle Middle-Left */
+              #fdf3f8 65%,  /* Soft Petal Pink Middle-Right */
+              #fdf1f7 100%  /* Orchid Mist Far Right */
+          );
+          position: relative;
+          z-index: 5;
+          mask:
+            radial-gradient(var(--R) at left 50% bottom calc(var(--size) + var(--p)), #000 99%, #0000 101%) 
+              calc(50% - 2 * var(--size)) 0/calc(4 * var(--size)) 100%,
+            radial-gradient(var(--R) at left 50% bottom calc(-1 * var(--p)), #0000 99%, #000 101%) 
+              left 50% bottom var(--size) / calc(4 * var(--size)) 100% repeat-x;
+          -webkit-mask:
+            radial-gradient(var(--R) at left 50% bottom calc(var(--size) + var(--p)), #000 99%, #0000 101%) 
+              calc(50% - 2 * var(--size)) 0/calc(4 * var(--size)) 100%,
+            radial-gradient(var(--R) at left 50% bottom calc(-1 * var(--p)), #0000 99%, #000 101%) 
+              left 50% bottom var(--size) / calc(4 * var(--size)) 100% repeat-x;
+        }
+        .wave-divider-videos::before{
+          content:'';position:absolute;inset:0;background:transparent;z-index:-1;
+          mask:
+            radial-gradient(var(--R) at left 50% top calc(var(--size) + var(--p)), #0000 99%, #000 101%) 
+              calc(50% - 2 * var(--size)) 0/calc(4 * var(--size)) 100%,
+            radial-gradient(var(--R) at left 50% top calc(-1 * var(--p)), #000 99%, #000 101%) 
+              left 50% top var(--size) / calc(4 * var(--size)) 100% repeat-x;
+          -webkit-mask:
+            radial-gradient(var(--R) at left 50% top calc(var(--size) + var(--p)), #0000 99%, #000 101%) 
+              calc(50% - 2 * var(--size)) 0/calc(4 * var(--size)) 100%,
+            radial-gradient(var(--R) at left 50% top calc(-1 * var(--p)), #000 99%, #000 101%) 
               left 50% top var(--size) / calc(4 * var(--size)) 100% repeat-x;
         }
 
@@ -561,11 +709,11 @@ export default function Blog() {
           </label>
         </div>
         <div className="week-tabs">
-          <button className="nav-arrow" onClick={()=>setActivePhotoWeek(p=>Math.max(0,p-1))}>‹</button>
-          {photoWeeks.map((w,i)=>(
-            <button key={w} className={`w-tab${activePhotoWeek===i?" on":""}`} onClick={()=>setActivePhotoWeek(i)}>{w}</button>
+          <button className="nav-arrow" onClick={()=>setButtonGroupStart(s=>Math.max(0,s-6))} disabled={buttonGroupStart === 0}>‹</button>
+          {photoWeeks.slice(buttonGroupStart, buttonGroupStart + 6).map((w,i)=>(
+            <button key={w} className={`w-tab${buttonGroupStart + i === currentPhotoWeek ? " on" : ""}`} onClick={()=>setCurrentPhotoWeek(buttonGroupStart + i)}>{w}</button>
           ))}
-          <button className="nav-arrow" onClick={()=>setActivePhotoWeek(p=>Math.min(photoWeeks.length-1,p+1))}>›</button>
+          <button className="nav-arrow" onClick={()=>setButtonGroupStart(s=>Math.min(photoWeeks.length-6,s+6))} disabled={buttonGroupStart >= photoWeeks.length-6}>›</button>
         </div>
         <div className="photo-grid">
           {photos.slice(0,6).map((p,i)=>(
@@ -601,11 +749,201 @@ export default function Blog() {
         </div>
       </section>
 
+      {/* WAVE DIVIDER */}
+      <div className="wave-divider-videos"></div>
+
+      {/* CONCLUSION */}
+      <section id="conclusion" className="sec" style={{background:"#fff"}}>
+        <div className="about-grid">
+          <div className="about-blob-wrap">
+            <div className="about-sticker">Internship Journey!</div>
+            <div style={{marginTop:20, position:"relative", display:"inline-block"}}>
+              {/* Cute top banner with sparkles */}
+              
+              {/* Cute side decorations */}
+              <div style={{
+                position:"absolute",
+                top:"-15px",
+                left:"-25px",
+                fontSize:"18px",
+                zIndex:3,
+                animation:"floatUp 4s ease-in-out infinite"
+              }}>🌷</div>
+              <div style={{
+                position:"absolute",
+                top:"-10px",
+                right:"-20px",
+                fontSize:"16px",
+                zIndex:3,
+                animation:"floatUp 4s ease-in-out 1s infinite"
+              }}>🦋</div>
+              <div style={{
+                position:"absolute",
+                bottom:"-15px",
+                left:"-20px",
+                fontSize:"17px",
+                zIndex:3,
+                animation:"floatUp 4s ease-in-out 2s infinite"
+              }}>🌺</div>
+              <div style={{
+                position:"absolute",
+                bottom:"-10px",
+                right:"-25px",
+                fontSize:"15px",
+                zIndex:3,
+                animation:"floatUp 4s ease-in-out 3s infinite"
+              }}>🌼</div>
+              
+              {/* Floating sparkles */}
+              <div style={{
+                position:"absolute",
+                top:"20px",
+                left:"-30px",
+                fontSize:"12px",
+                zIndex:3,
+                animation:"twinkle 2s ease-in-out infinite"
+              }}>✨</div>
+              <div style={{
+                position:"absolute",
+                top:"40px",
+                right:"-35px",
+                fontSize:"10px",
+                zIndex:3,
+                animation:"twinkle 2s ease-in-out 0.5s infinite"
+              }}>�</div>
+              <div style={{
+                position:"absolute",
+                bottom:"30px",
+                left:"-35px",
+                fontSize:"11px",
+                zIndex:3,
+                animation:"twinkle 2s ease-in-out 1s infinite"
+              }}>⭐</div>
+              <div style={{
+                position:"absolute",
+                bottom:"20px",
+                right:"-30px",
+                fontSize:"13px",
+                zIndex:3,
+                animation:"twinkle 2s ease-in-out 1.5s infinite"
+              }}>🌟</div>
+              
+              {/* Cute ribbon bows */}
+              <div style={{
+                position:"absolute",
+                top:"50%",
+                left:"-45px",
+                transform:"translateY(-50%)",
+                width:"40px",
+                height:"40px",
+                zIndex:2,
+                fontSize:"24px",
+                animation:"morph 6s ease-in-out infinite"
+              }}>🎀</div>
+              <div style={{
+                position:"absolute",
+                top:"50%",
+                right:"-45px",
+                transform:"translateY(-50%)",
+                width:"40px",
+                height:"40px",
+                zIndex:2,
+                fontSize:"24px",
+                animation:"morph 6s ease-in-out 2s infinite"
+              }}>🎀</div>
+              
+              {/* Soft pastel blobs */}
+              <div style={{
+                position:"absolute",
+                top:"-20px",
+                left:"-20px",
+                right:"-20px",
+                bottom:"-20px",
+                borderRadius:"70% 30% 60% 40%/40% 60% 30% 70%",
+                background:"linear-gradient(135deg, #ffe0f0 0%, #ffc0e0 25%, #ffb6c1 50%, #ffa0c0 75%, #ff80a0 100%)",
+                opacity:0.4,
+                zIndex:0,
+                animation:"morph 10s ease-in-out infinite"
+              }}></div>
+              
+              {/* Additional soft blob */}
+              <div style={{
+                position:"absolute",
+                top:"10px",
+                right:"-15px",
+                width:"80px",
+                height:"80px",
+                borderRadius:"60% 40% 50% 50%/50% 60% 40% 60%",
+                background:"linear-gradient(135deg, #ffe0f0, #ffb6c1)",
+                opacity:0.3,
+                zIndex:0,
+                animation:"morph 8s ease-in-out 1.5s infinite"
+              }}></div>
+              
+              {/* Bottom accent blob */}
+              <div style={{
+                position:"absolute",
+                bottom:"10px",
+                left:"-15px",
+                width:"70px",
+                height:"70px",
+                borderRadius:"50% 50% 60% 40%/40% 60% 40% 60%",
+                background:"linear-gradient(135deg, #ffc0e0, #ffa0c0)",
+                opacity:0.35,
+                zIndex:0,
+                animation:"morph 7s ease-in-out 2.5s infinite"
+              }}></div>
+              
+              {/* Main image with cute frame */}
+              <div style={{
+                position:"relative",
+                zIndex:1,
+                padding:"8px",
+                background:"linear-gradient(135deg, #fff0f5, #ffe0f0)",
+                borderRadius:"25px",
+                display:"inline-block",
+                border: "3px solid #ffb6c1",
+                boxShadow: "0 8px 32px rgba(255,182,193,0.2)"
+              }}>
+                <img 
+                  src="/images/Lainey_Student_Unif.jpg" 
+                  alt="Lainey in Student Uniform" 
+                  style={{
+                    width: "100%",
+                    maxWidth: "240px",
+                    height: "auto",
+                    borderRadius:"40% 60% 60% 40% / 40% 40% 60% 60%",
+                    display: "block",
+                    objectFit: "cover",
+                    aspectRatio: "3/4",
+                    border: "2px solid #fff"
+                  }}
+                />
+              </div>
+              
+              {/* Cute bottom tag */}
+            </div>
+          </div>
+          <div>
+            <div className="sec-label">✦ Experience</div>
+            <h2 className="sec-title">Lainey's <span>Internship Chronicles</span></h2>
+            <p className="about-text" style={{marginTop:0}}>
+              <p>Documenting my professional journey through the tech industry! From first-day jitters to project victories, every experience shapes my growth as a developer. Join me as I navigate the world of internships and discover what it takes to succeed in the tech workplace.</p>
+              <p style={{marginTop:14}}>Building skills, making connections, and creating impact! 🚀</p>
+            </p>
+            <div className="hero-btns" style={{marginTop:28}}>
+              <button className="btn-main" onClick={()=>window.location.href='mailto:elaine@example.com'}>Contact Me 💌</button>
+              <button className="btn-ghost" onClick={()=>window.open('https://linkedin.com', '_blank')}>LinkedIn Profile →</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FOOTER */}
       <footer>
         <span className="f-logo">Lainey's Portfolio 🌸</span>
         <ul className="f-links">
-          {[["home","Home"],["about","About Me"],["weekly-blog","Weekly Blog"],["photos","Photos"],["videos","Videos"]].map(([id,label])=>(
+          {[["home","Home"],["about","About Me"],["weekly-blog","Weekly Blog"],["photos","Photos"],["videos","Videos"],["contact","Contact"]].map(([id,label])=>(
             <li key={id}><a href={`#${id}`} onClick={e=>{e.preventDefault();scrollTo(id);}}>{label}</a></li>
           ))}
         </ul>
