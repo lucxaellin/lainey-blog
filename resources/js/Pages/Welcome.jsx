@@ -22,6 +22,15 @@ const weekBlogs = {
   "Week 1": { emoji:"🌸", content:"This week I explored the basics of web design and started learning React! It was overwhelming at first but I'm getting the hang of it. Every bug I fixed felt like unlocking a new achievement! 💪✨" },
   "Week 2": { emoji:"🎨", content:"Deep dive into CSS and styling this week. I discovered the magic of flexbox and grid layouts. My pages are finally starting to look the way I imagined them in my head! 🎨" },
   "Week 3": { emoji:"💻", content:"This week was all about JavaScript fundamentals — functions, loops, arrays. It's like learning a new language but for computers. The logic is starting to click! 🧠💡" },
+  "Week 4": { emoji:"🚀", content:"Started learning about React hooks and state management! useState and useEffect are becoming my new best friends. Building interactive components is so exciting! 🎯" },
+  "Week 5": { emoji:"📱", content:"Responsive design week! Made sure all my components look great on mobile, tablet, and desktop. Media queries are tricky but so important for user experience! 📐" },
+  "Week 6": { emoji:"🔧", content:"Debugging and optimization week! Learned about React DevTools, performance optimization, and how to write cleaner code. My apps are running smoother than ever! ⚡" },
+  "Week 7": { emoji:"🎭", content:"Explored animations and transitions this week. Added smooth hover effects, page transitions, and micro-interactions. Making the UI feel alive and responsive! ✨" },
+  "Week 8": { emoji:"🗄️", content:"Database week! Learned about SQL basics, data modeling, and how to connect frontend to backend. Understanding how data flows through an application is fascinating! 🔄" },
+  "Week 9": { emoji:"🔐", content:"Security and authentication! Implemented user login systems, learned about JWT tokens, and best practices for keeping user data safe. Security is everyone's responsibility! 🛡️" },
+  "Week 10": { emoji:"🧪", content:"Testing week! Discovered the importance of unit tests, integration tests, and writing testable code. Catching bugs before they reach production is a game changer! 🐛" },
+  "Week 11": { emoji:"📊", content:"API integration week! Connected to external APIs, handled async data, and learned about error handling. Building real-world applications that talk to other services! 🌐" },
+  "Week 12": { emoji:"🎓", content:"Final project week! Put everything together - frontend, backend, database, and deployment. Feeling proud of how far I've come and excited for what's next! 🌟" },
 };
 
 const photoWeeks = ["Week 1","Week 2","Week 3","Week 4","Week 5","Week 6"];
@@ -29,6 +38,8 @@ const placeholderColors = ["#fce7f3","#fef3c7","#d1fae5","#dbeafe","#ede9fe","#f
 
 export default function Blog() {
   const [blogOpen, setBlogOpen] = useState(null);
+  const [activeBlogWeek, setActiveBlogWeek] = useState(0);
+  const [hoveredWeek, setHoveredWeek] = useState(null);
   const [activePhotoWeek, setActivePhotoWeek] = useState(0);
   const [photos, setPhotos] = useState(
     placeholderColors.map((c, i) => ({ id:i, color:c, src:null, label:`Photo ${i+1}` }))
@@ -43,6 +54,33 @@ export default function Blog() {
     setPhotos(prev => [...prev, { id: Date.now(), src: url, color:"#fce7f3", label:`Photo ${prev.length+1}` }]);
   };
 
+  // Carousel helper functions
+  const getScrollOffset = (activeIndex) => {
+    return Math.floor(activeIndex / 3) * 972; // Each group of 3 cards is 972px (3 * 324px)
+  };
+
+  const isCardActive = (cardIndex, activeIndex) => {
+    return cardIndex === activeIndex;
+  };
+
+  const getPreviousPage = (activeIndex) => {
+    return Math.max(0, Math.floor(activeIndex / 3) * 3 - 3);
+  };
+
+  const getNextPage = (activeIndex) => {
+    const totalWeeks = Object.keys(weekBlogs).length;
+    const nextGroupStart = Math.floor(activeIndex / 3) * 3 + 3;
+    return Math.min(nextGroupStart, totalWeeks - 1);
+  };
+
+  const handleCardHover = (index) => {
+    setHoveredWeek(index);
+  };
+
+  const handleCardLeave = () => {
+    setHoveredWeek(null);
+  };
+
   return (
     <>
       <style>{`
@@ -53,7 +91,7 @@ export default function Blog() {
           --cream:#fffbeb;--mauve:#ede9fe;--text:#3d1a2e;--muted:#9d6e85;
         }
         html{scroll-behavior:smooth;}
-        body{background:var(--pink-l);font-family:'DM Sans',sans-serif;color:var(--text);overflow-x:hidden;}
+        body{background:var(white);font-family:'DM Sans',sans-serif;color:var(--text);overflow-x:hidden;}
 
         /* NAV */
         nav{
@@ -166,23 +204,40 @@ export default function Blog() {
 
         /* BLOG */
         #weekly-blog{background:linear-gradient(160deg,var(--pink-l),var(--cream));}
-        .blog-grid{
-          display:grid;grid-template-columns:repeat(3,1fr);
-          gap:24px;max-width:1000px;margin:40px auto 0;
+        .blog-carousel-container{
+          position:relative;width:1000px;<height:300>px;margin:40px auto 0;
+          overflow:hidden;border-radius:24px;
+          padding-top:20px;
+          padding-bottom:20px;
+        }
+        .blog-carousel{
+          display:flex;transition:transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          gap:24px;padding:0 12px;
         }
         .blog-card{
           border-radius:24px;background:#fff;border:2px solid var(--pink-m);
           padding:32px 28px;cursor:pointer;
-          transition:transform .22s,box-shadow .22s;
+          transition:all .3s ease;flex-shrink:0;width:300px;
           position:relative;overflow:hidden;
-          animation:fadeUp .6s both;
+          filter:blur(0);opacity:1;transform:scale(1);
+        }
+        .blog-card.active{
+          filter:blur(0);opacity:1;transform:scale(1);
+          box-shadow:0 20px 48px #f472b630;
+        }
+        .blog-card[data-hovered="true"]{
+          filter:blur(0);opacity:1;transform:scale(1.05) translateY(-4px);
+          box-shadow:0 16px 40px #f472b640;
+          border-color:var(--pink);
+        }
+        .blog-carousel:hover .blog-card:not([data-hovered="true"]){
+          filter:blur(1.5px);opacity:0.7;transform:scale(0.95);
         }
         .blog-card::before{
           content:'';position:absolute;top:0;left:0;right:0;height:5px;
           background:linear-gradient(90deg,var(--pink),#c084fc);
           border-radius:24px 24px 0 0;
         }
-        .blog-card:hover{transform:translateY(-8px) rotate(-1deg);box-shadow:0 20px 48px #f472b630;}
         .blog-emoji{font-size:2.2rem;margin-bottom:14px;display:block;}
         .blog-week{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--text);}
         .blog-preview{font-size:.84rem;color:var(--muted);margin-top:10px;line-height:1.6;
@@ -194,6 +249,26 @@ export default function Blog() {
           border:1.5px solid var(--pink-m);transition:all .18s;
         }
         .blog-card:hover .blog-cta{background:var(--pink);color:#fff;border-color:var(--pink);}
+        .blog-nav{
+          display:flex;justify-content:center;align-items:center;gap:16px;
+          margin-top:32px;
+        }
+        .blog-nav-btn{
+          background:#fff;border:2px solid var(--pink-m);border-radius:50%;
+          width:48px;height:48px;font-size:1.2rem;cursor:pointer;color:var(--pink);
+          display:flex;align-items:center;justify-content:center;transition:all .18s;
+        }
+        .blog-nav-btn:hover{background:var(--pink);color:#fff;border-color:var(--pink);}
+        .blog-nav-btn:disabled{opacity:0.3;cursor:not-allowed;}
+        .blog-nav-btn:hover:disabled{background:transparent;color:var(--pink);}
+        .blog-week-indicators{
+          display:flex;gap:8px;align-items:center;
+        }
+        .blog-dot{
+          width:8px;height:8px;border-radius:50%;background:var(--pink-m);
+          transition:all .2s;cursor:pointer;
+        }
+        .blog-dot.active{background:var(--pink);transform:scale(1.3);}
 
         /* MODAL */
         .overlay{
@@ -285,6 +360,48 @@ export default function Blog() {
         /* SPARKLES */
         .spk{position:absolute;color:var(--pink);pointer-events:none;animation:twinkle 2s ease-in-out infinite;}
 
+        /* WAVE DIVIDER */
+        .wave-divider{
+          --size: 60px;
+          --m: 0.4;
+          --p: calc(var(--m)*var(--size));
+          --R: calc(var(--size)*sqrt(var(--m)*var(--m) + 1));
+          height: 100px; /* Adjust height as needed */
+          background: linear-gradient(
+            to right, 
+            #fbf4f2 0%,   /* Soft Cream Left */
+            #fff9e6 25%,  /* Pale Yellow Inner-Left */
+            #fcf3f6 50%,  /* Blush Pink Center */
+            #f2effa 75%,  /* Soft Lavender Inner-Right */
+            #eceeff 100%  /* Pale Blue-Purple Far Right */
+          );
+          position: relative;
+          z-index: 5;
+          mask:
+            radial-gradient(var(--R) at left 50% bottom calc(var(--size) + var(--p)), #000 99%, #0000 101%) 
+              calc(50% - 2 * var(--size)) 0/calc(4 * var(--size)) 100%,
+            radial-gradient(var(--R) at left 50% bottom calc(-1 * var(--p)), #0000 99%, #000 101%) 
+              left 50% bottom var(--size) / calc(4 * var(--size)) 100% repeat-x;
+          -webkit-mask:
+            radial-gradient(var(--R) at left 50% bottom calc(var(--size) + var(--p)), #000 99%, #0000 101%) 
+              calc(50% - 2 * var(--size)) 0/calc(4 * var(--size)) 100%,
+            radial-gradient(var(--R) at left 50% bottom calc(-1 * var(--p)), #0000 99%, #000 101%) 
+              left 50% bottom var(--size) / calc(4 * var(--size)) 100% repeat-x;
+        }
+        .wave-divider::before{
+          content:'';position:absolute;inset:0;background:transparent;z-index:-1;
+          mask:
+            radial-gradient(var(--R) at left 50% top calc(var(--size) + var(--p)), #0000 99%, #000 101%) 
+              calc(50% - 2 * var(--size)) 0/calc(4 * var(--size)) 100%,
+            radial-gradient(var(--R) at left 50% top calc(-1 * var(--p)), #000 99%, #0000 101%) 
+              left 50% top var(--size) / calc(4 * var(--size)) 100% repeat-x;
+          -webkit-mask:
+            radial-gradient(var(--R) at left 50% top calc(var(--size) + var(--p)), #0000 99%, #000 101%) 
+              calc(50% - 2 * var(--size)) 0/calc(4 * var(--size)) 100%,
+            radial-gradient(var(--R) at left 50% top calc(-1 * var(--p)), #000 99%, #0000 101%) 
+              left 50% top var(--size) / calc(4 * var(--size)) 100% repeat-x;
+        }
+
         /* ANIMATIONS */
         @keyframes slideDown{from{opacity:0;transform:translateY(-24px);}to{opacity:1;transform:none;}}
         @keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:none;}}
@@ -347,6 +464,9 @@ export default function Blog() {
         </div>
       </section>
 
+      {/* WAVE DIVIDER */}
+      <div className="wave-divider"></div>
+
       {/* ABOUT */}
       <section id="about" className="sec">
         <div className="about-grid">
@@ -373,15 +493,46 @@ export default function Blog() {
           <h2 className="sec-title">Weekly <span>Blog</span></h2>
           <p style={{color:"var(--muted)",marginTop:10,fontSize:".9rem"}}>Click a card to read more 💌</p>
         </div>
-        <div className="blog-grid">
-          {Object.entries(weekBlogs).map(([week,data],i)=>(
-            <div key={week} className="blog-card" style={{animationDelay:`${i*.12}s`}} onClick={()=>setBlogOpen(week)}>
-              <span className="blog-emoji">{data.emoji}</span>
-              <div className="blog-week">{week}</div>
-              <p className="blog-preview">{data.content}</p>
-              <span className="blog-cta">Read more →</span>
-            </div>
-          ))}
+        
+        <div className="blog-carousel-container">
+          <div className="blog-carousel" style={{
+            transform: `translateX(-${getScrollOffset(activeBlogWeek)}px)`
+          }}>
+            {Object.entries(weekBlogs).map(([week,data],i)=>(
+              <div key={week} 
+                   className={`blog-card ${isCardActive(i, activeBlogWeek) ? 'active' : ''}`} 
+                   data-hovered={hoveredWeek === i ? 'true' : 'false'}
+                   style={{}} 
+                   onClick={()=>setBlogOpen(week)}
+                   onMouseEnter={()=>handleCardHover(i)}
+                   onMouseLeave={handleCardLeave}>
+                <span className="blog-emoji">{data.emoji}</span>
+                <div className="blog-week">{week}</div>
+                <p className="blog-preview">{data.content}</p>
+                <span className="blog-cta">Read more →</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <div className="blog-nav">
+          <button className="blog-nav-btn" 
+                  onClick={()=>setActiveBlogWeek(getPreviousPage(activeBlogWeek))}
+                  disabled={activeBlogWeek === 0}>
+            ‹
+          </button>
+          <div className="blog-week-indicators">
+            {Array.from({length: Math.ceil(Object.keys(weekBlogs).length / 3)}, (_, groupIndex) => (
+              <div key={groupIndex} 
+                   className={`blog-dot ${Math.floor(activeBlogWeek / 3) === groupIndex ? 'active' : ''}`}
+                   onClick={()=>setActiveBlogWeek(groupIndex * 3)}/>
+            ))}
+          </div>
+          <button className="blog-nav-btn" 
+                  onClick={()=>setActiveBlogWeek(getNextPage(activeBlogWeek))}
+                  disabled={activeBlogWeek >= Object.keys(weekBlogs).length - 3}>
+            ›
+          </button>
         </div>
       </section>
 
