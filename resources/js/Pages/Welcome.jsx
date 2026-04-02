@@ -144,6 +144,108 @@ export default function Blog() {
   const [currentPhotoWeek, setCurrentPhotoWeek] = useState(0);
   const [buttonGroupStart, setButtonGroupStart] = useState(0);
   const [photos, setPhotos] = useState(weekPhotos["Week 1"]);
+  const [uploadModalOpen, setUploadModalOpen] = useState(false);
+  const [passwordModalOpen, setPasswordModalOpen] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
+  const [selectedUploadWeek, setSelectedUploadWeek] = useState("Week 1");
+  const [weekPhotos, setWeekPhotos] = useState({
+    "Week 1": [
+      { id:1, src:"https://picsum.photos/seed/week1-1/300/300.jpg", color:"#fce7f3", label:"Setup Day 🖥️" },
+      { id:2, src:"https://picsum.photos/seed/week1-2/300/300.jpg", color:"#fef3c7", label:"First Code 💻" },
+      { id:3, src:"https://picsum.photos/seed/week1-3/300/300.jpg", color:"#d1fae5", label:"Learning 📚" },
+      { id:4, src:"https://picsum.photos/seed/week1-4/300/300.jpg", color:"#dbeafe", label:"Environment 🌱" },
+      { id:5, src:"https://picsum.photos/seed/week1-5/300/300.jpg", color:"#ede9fe", label:"Tools 🔧" },
+      { id:6, src:"https://picsum.photos/seed/week1-6/300/300.jpg", color:"#fce7f3", label:"Progress 📈" },
+    ],
+    "Week 2": [
+      { id:7, src:"https://picsum.photos/seed/week2-1/300/300.jpg", color:"#fef3c7", label:"CSS Magic 🎨" },
+      { id:8, src:"https://picsum.photos/seed/week2-2/300/300.jpg", color:"#d1fae5", label:"Flexbox 📦" },
+      { id:9, src:"https://picsum.photos/seed/week2-3/300/300.jpg", color:"#dbeafe", label:"Grid Layout 📐" },
+      { id:10, src:"https://picsum.photos/seed/week2-4/300/300.jpg", color:"#ede9fe", label:"Styling ✨" },
+      { id:11, src:"https://picsum.photos/seed/week2-5/300/300.jpg", color:"#fce7f3", label:"Design 🎭" },
+      { id:12, src:"https://picsum.photos/seed/week2-6/300/300.jpg", color:"#fef3c7", label:"Colors 🌈" },
+    ],
+    "Week 3": [
+      { id:13, src:"https://picsum.photos/seed/week3-1/300/300.jpg", color:"#d1fae5", label:"JavaScript 🟨" },
+      { id:14, src:"https://picsum.photos/seed/week3-2/300/300.jpg", color:"#dbeafe", label:"Functions ⚡" },
+      { id:15, src:"https://picsum.photos/seed/week3-3/300/300.jpg", color:"#ede9fe", label:"Arrays 📊" },
+      { id:16, src:"https://picsum.photos/seed/week3-4/300/300.jpg", color:"#fce7f3", label:"Objects 🏗️" },
+      { id:17, src:"https://picsum.photos/seed/week3-5/300/300.jpg", color:"#fef3c7", label:"DOM 🌐" },
+      { id:18, src:"https://picsum.photos/seed/week3-6/300/300.jpg", color:"#d1fae5", label:"Events 🎯" },
+    ],
+    "Week 4": [
+      { id:19, src:"https://picsum.photos/seed/week4-1/300/300.jpg", color:"#dbeafe", label:"React ⚛️" },
+      { id:20, src:"https://picsum.photos/seed/week4-2/300/300.jpg", color:"#ede9fe", label:"Components 🧩" },
+      { id:21, src:"https://picsum.photos/seed/week4-3/300/300.jpg", color:"#fce7f3", label:"State 🔄" },
+      { id:22, src:"https://picsum.photos/seed/week4-4/300/300.jpg", color:"#fef3c7", label:"Props 📦" },
+      { id:23, src:"https://picsum.photos/seed/week4-5/300/300.jpg", color:"#d1fae5", label:"Hooks 🎣" },
+      { id:24, src:"https://picsum.photos/seed/week4-6/300/300.jpg", color:"#dbeafe", label:"Lifecycle 🔄" },
+    ],
+    "Week 5": [
+      { id:25, src:"https://picsum.photos/seed/week5-1/300/300.jpg", color:"#ede9fe", label:"API 🌐" },
+      { id:26, src:"https://picsum.photos/seed/week5-2/300/300.jpg", color:"#fce7f3", label:"Fetch 📡" },
+      { id:27, src:"https://picsum.photos/seed/week5-3/300/300.jpg", color:"#fef3c7", label:"JSON 📄" },
+      { id:28, src:"https://picsum.photos/seed/week5-4/300/300.jpg", color:"#d1fae5", label:"Async ⏳" },
+      { id:29, src:"https://picsum.photos/seed/week5-5/300/300.jpg", color:"#dbeafe", label:"Promise 🤝" },
+      { id:30, src:"https://picsum.photos/seed/week5-6/300/300.jpg", color:"#ede9fe", label:"Error Handling ⚠️" },
+    ],
+    "Week 6": [
+      { id:31, src:"https://picsum.photos/seed/week6-1/300/300.jpg", color:"#fce7f3", label:"Database 🗄️" },
+      { id:32, src:"https://picsum.photos/seed/week6-2/300/300.jpg", color:"#fef3c7", label:"SQL 📊" },
+      { id:33, src:"https://picsum.photos/seed/week6-3/300/300.jpg", color:"#d1fae5", label:"Tables 📋" },
+      { id:34, src:"https://picsum.photos/seed/week6-4/300/300.jpg", color:"#dbeafe", label:"Queries 🔍" },
+      { id:35, src:"https://picsum.photos/seed/week6-5/300/300.jpg", color:"#ede9fe", label:"Joins 🔗" },
+      { id:36, src:"https://picsum.photos/seed/week6-6/300/300.jpg", color:"#fce7f3", label:"Migration 🚚" },
+    ],
+    "Week 7": [
+      { id:37, src:"https://picsum.photos/seed/week7-1/300/300.jpg", color:"#fef3c7", label:"Backend 🖥️" },
+      { id:38, src:"https://picsum.photos/seed/week7-2/300/300.jpg", color:"#d1fae5", label:"Node.js 🟢" },
+      { id:39, src:"https://picsum.photos/seed/week7-3/300/300.jpg", color:"#dbeafe", label:"Express 🚂" },
+      { id:40, src:"https://picsum.photos/seed/week7-4/300/300.jpg", color:"#ede9fe", label:"Routes 🛣️" },
+      { id:41, src:"https://picsum.photos/seed/week7-5/300/300.jpg", color:"#fce7f3", label:"Middleware 🔌" },
+      { id:42, src:"https://picsum.photos/seed/week7-6/300/300.jpg", color:"#fef3c7", label:"Authentication 🔐" },
+    ],
+    "Week 8": [
+      { id:43, src:"https://picsum.photos/seed/week8-1/300/300.jpg", color:"#d1fae5", label:"Testing 🧪" },
+      { id:44, src:"https://picsum.photos/seed/week8-2/300/300.jpg", color:"#dbeafe", label:"Unit Tests 🧪" },
+      { id:45, src:"https://picsum.photos/seed/week8-3/300/300.jpg", color:"#ede9fe", label:"Integration 🔗" },
+      { id:46, src:"https://picsum.photos/seed/week8-4/300/300.jpg", color:"#fce7f3", label:"Debugging 🐛" },
+      { id:47, src:"https://picsum.photos/seed/week8-5/300/300.jpg", color:"#fef3c7", label:"Coverage 📊" },
+      { id:48, src:"https://picsum.photos/seed/week8-6/300/300.jpg", color:"#d1fae5", label:"CI/CD 🔄" },
+    ],
+    "Week 9": [
+      { id:49, src:"https://picsum.photos/seed/week9-1/300/300.jpg", color:"#dbeafe", label:"Security 🔐" },
+      { id:50, src:"https://picsum.photos/seed/week9-2/300/300.jpg", color:"#ede9fe", label:"JWT 🎫" },
+      { id:51, src:"https://picsum.photos/seed/week9-3/300/300.jpg", color:"#fce7f3", label:"Encryption 🔒" },
+      { id:52, src:"https://picsum.photos/seed/week9-4/300/300.jpg", color:"#fef3c7", label:"Hashing 🔢" },
+      { id:53, src:"https://picsum.photos/seed/week9-5/300/300.jpg", color:"#d1fae5", label:"Sessions 📝" },
+      { id:54, src:"https://picsum.photos/seed/week9-6/300/300.jpg", color:"#dbeafe", label:"Best Practices 🛡️" },
+    ],
+    "Week 10": [
+      { id:55, src:"https://picsum.photos/seed/week10-1/300/300.jpg", color:"#ede9fe", label:"Deployment 🚀" },
+      { id:56, src:"https://picsum.photos/seed/week10-2/300/300.jpg", color:"#fce7f3", label:"Docker 🐳" },
+      { id:57, src:"https://picsum.photos/seed/week10-3/300/300.jpg", color:"#fef3c7", label:"Cloud ☁️" },
+      { id:58, src:"https://picsum.photos/seed/week10-4/300/300.jpg", color:"#d1fae5", label:"AWS ☁️" },
+      { id:59, src:"https://picsum.photos/seed/week10-5/300/300.jpg", color:"#dbeafe", label:"CI/CD 🔄" },
+      { id:60, src:"https://picsum.photos/seed/week10-6/300/300.jpg", color:"#ede9fe", label:"Monitoring 📊" },
+    ],
+    "Week 11": [
+      { id:61, src:"https://picsum.photos/seed/week11-1/300/300.jpg", color:"#fce7f3", label:"Performance ⚡" },
+      { id:62, src:"https://picsum.photos/seed/week11-2/300/300.jpg", color:"#fef3c7", label:"Optimization 🎯" },
+      { id:63, src:"https://picsum.photos/seed/week11-3/300/300.jpg", color:"#d1fae5", label:"Caching 💾" },
+      { id:64, src:"https://picsum.photos/seed/week11-4/300/300.jpg", color:"#dbeafe", label:"Lazy Loading ⏳" },
+      { id:65, src:"https://picsum.photos/seed/week11-5/300/300.jpg", color:"#ede9fe", label:"Bundle Size 📦" },
+      { id:66, src:"https://picsum.photos/seed/week11-6/300/300.jpg", color:"#fce7f3", label:"SEO 🔍" },
+    ],
+    "Week 12": [
+      { id:67, src:"https://picsum.photos/seed/week12-1/300/300.jpg", color:"#fef3c7", label:"Portfolio 🎨" },
+      { id:68, src:"https://picsum.photos/seed/week12-2/300/300.jpg", color:"#d1fae5", label:"Final Project 🎯" },
+      { id:69, src:"https://picsum.photos/seed/week12-3/300/300.jpg", color:"#dbeafe", label:"Presentation 📊" },
+      { id:70, src:"https://picsum.photos/seed/week12-4/300/300.jpg", color:"#ede9fe", label:"Demo 🎬" },
+      { id:71, src:"https://picsum.photos/seed/week12-5/300/300.jpg", color:"#fce7f3", label:"Certificate 🏆" },
+      { id:72, src:"https://picsum.photos/seed/week12-6/300/300.jpg", color:"#fef3c7", label:"Celebration 🎉" },
+    ]
+  });
 
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior:"smooth" });
 
@@ -151,7 +253,28 @@ export default function Blog() {
     const file = e.target.files[0];
     if (!file) return;
     const url = URL.createObjectURL(file);
-    setPhotos(prev => [...prev, { id: Date.now(), src: url, color:"#fce7f3", label:`Photo ${prev.length+1}` }]);
+    const newPhoto = { id: Date.now(), src: url, color:"#fce7f3", label:`Photo ${Date.now()}` };
+    
+    // Add photo to the selected week
+    setWeekPhotos(prev => ({
+      ...prev,
+      [selectedUploadWeek]: [...(prev[selectedUploadWeek] || []), newPhoto]
+    }));
+    
+    // Update current photos display if we're viewing that week
+    if (photoWeeks[currentPhotoWeek] === selectedUploadWeek) {
+      setPhotos(prev => [...prev, newPhoto]);
+    }
+  };
+
+  const handlePasswordSubmit = (password) => {
+    if (password === "lainey123") {
+      setPasswordError("");
+      setPasswordModalOpen(false);
+      setUploadModalOpen(true);
+    } else {
+      setPasswordError("Password is incorrect");
+    }
   };
 
   // Update photos when active photo week changes
@@ -412,7 +535,7 @@ export default function Blog() {
         .week-tabs{display:flex;gap:8px;max-width:1000px;margin:26px auto 22px;flex-wrap:wrap;align-items:center;}
         .w-tab{
           background:#fff;border:2px solid var(--pink-m);border-radius:50px;
-          padding:8px 20px;font-size:.72rem;font-weight:500;letter-spacing:2px;
+          padding:7px 20px;font-size:.68rem;font-weight:500;letter-spacing:1.5px;
           text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all .18s;
         }
         .w-tab.on{background:var(--pink);color:#fff;border-color:var(--pink);}
@@ -584,7 +707,7 @@ export default function Blog() {
 
       {/* NAV */}
       <nav>
-        <div className="nav-logo">Lainey's Portfolio 🌸</div>
+        <div className="nav-logo">Lainey's Blog 🌸</div>
         <ul className="nav-links">
           {[["home","Home"],["about","About Me"],["weekly-blog","Weekly Blog"],["photos","Photos"],["videos","Videos"]].map(([id,label])=>(
             <li key={id}><a href={`#${id}`} onClick={e=>{e.preventDefault();scrollTo(id);}}>{label}</a></li>
@@ -603,7 +726,7 @@ export default function Blog() {
         <div className="hero-content">
           <div className="hero-pill">✦ BSIT 4C Student</div>
           <h1 className="hero-name">Elaine Mae<br /><em>A. Bertiz</em></h1>
-          <p className="hero-sub">Lainey's Portfolio ✨</p>
+          <p className="hero-sub">Lainey's Blog ✨</p>
           <p className="hero-desc">A creative space where I document my journey through technology, design, and everything in between. 💗</p>
           <div className="hero-btns">
             <button className="btn-main" onClick={()=>scrollTo("about")}>Meet Lainey 🌷</button>
@@ -703,17 +826,16 @@ export default function Blog() {
             <div className="sec-label">✦ Gallery</div>
             <h2 className="sec-title">Photos <span>✨</span></h2>
           </div>
-          <label className="upload-lbl" htmlFor="photo-upload">
+          <label className="upload-lbl" onClick={() => setPasswordModalOpen(true)}>
             📷 Upload Image
-            <input id="photo-upload" type="file" accept="image/*" style={{display:"none"}} onChange={handleUpload}/>
           </label>
         </div>
         <div className="week-tabs">
-          <button className="nav-arrow" onClick={()=>setButtonGroupStart(s=>Math.max(0,s-6))} disabled={buttonGroupStart === 0}>‹</button>
-          {photoWeeks.slice(buttonGroupStart, buttonGroupStart + 6).map((w,i)=>(
-            <button key={w} className={`w-tab${buttonGroupStart + i === currentPhotoWeek ? " on" : ""}`} onClick={()=>setCurrentPhotoWeek(buttonGroupStart + i)}>{w}</button>
+          <button className="nav-arrow" onClick={() => setButtonGroupStart(Math.max(0, buttonGroupStart - 1))} disabled={buttonGroupStart === 0}>‹</button>
+          {photoWeeks.slice(buttonGroupStart, buttonGroupStart + 9).map((w, i) => (
+            <button key={w} className={`w-tab${buttonGroupStart + i === currentPhotoWeek ? " on" : ""}`} onClick={() => setCurrentPhotoWeek(buttonGroupStart + i)}>{w}</button>
           ))}
-          <button className="nav-arrow" onClick={()=>setButtonGroupStart(s=>Math.min(photoWeeks.length-6,s+6))} disabled={buttonGroupStart >= photoWeeks.length-6}>›</button>
+          <button className="nav-arrow" onClick={() => setButtonGroupStart(Math.min(photoWeeks.length - 9, buttonGroupStart + 1))} disabled={buttonGroupStart >= photoWeeks.length - 9}>›</button>
         </div>
         <div className="photo-grid">
           {photos.slice(0,6).map((p,i)=>(
@@ -728,6 +850,139 @@ export default function Blog() {
           ))}
         </div>
       </section>
+
+      {/* PASSWORD MODAL */}
+      {passwordModalOpen && (
+        <div className="overlay" onClick={() => setPasswordModalOpen(false)}>
+          <div className="modal" onClick={e => e.stopPropagation()}>
+            <button className="modal-x" onClick={() => setPasswordModalOpen(false)}>✕</button>
+            <span className="modal-emoji">🔐</span>
+            <div className="modal-title">Enter Password</div>
+            <p style={{color: "var(--muted)", textAlign: "center", margin: "16px 0"}}>
+              Please enter password to access photo upload
+            </p>
+            <div style={{margin: "20px 0"}}>
+              <input 
+                type="password" 
+                placeholder="Enter password..."
+                style={{
+                  width: "100%",
+                  padding: "12px 16px",
+                  border: "2px solid var(--pink-m)",
+                  borderRadius: "8px",
+                  fontSize: "16px",
+                  outline: "none",
+                  transition: "all 0.3s ease"
+                }}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    handlePasswordSubmit(e.target.value);
+                  }
+                }}
+                onChange={(e) => setPasswordError("")}
+                autoFocus
+              />
+              {passwordError && (
+                <p style={{color: "#ff4444", fontSize: "14px", marginTop: "8px", textAlign: "center"}}>
+                  {passwordError}
+                </p>
+              )}
+            </div>
+            <div style={{display: "flex", gap: "12px", justifyContent: "center", marginTop: "24px"}}>
+              <button 
+                className="btn-main" 
+                onClick={() => {
+                  const input = document.querySelector('input[type="password"]');
+                  if (input) handlePasswordSubmit(input.value);
+                }}
+              >
+                Submit
+              </button>
+              <button 
+                className="btn-ghost" 
+                onClick={() => setPasswordModalOpen(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* UPLOAD MODAL */}
+      {uploadModalOpen && (
+        <div className="overlay" onClick={() => setUploadModalOpen(false)}>
+          <div className="modal" onClick={e => e.stopPropagation()}>
+            <button className="modal-x" onClick={() => setUploadModalOpen(false)}>✕</button>
+            <span className="modal-emoji">📷</span>
+            <div className="modal-title">Upload Photo</div>
+            
+            {/* Week Selection */}
+            <div style={{margin: "20px 0"}}>
+              <p style={{color: "var(--muted)", textAlign: "center", margin: "0 0 12px 0", fontSize: "14px"}}>
+                Select week to upload photo:
+              </p>
+              <div style={{display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "8px"}}>
+                {photoWeeks.map((week) => (
+                  <button
+                    key={week}
+                    className={`w-tab ${selectedUploadWeek === week ? "on" : ""}`}
+                    onClick={() => setSelectedUploadWeek(week)}
+                    style={{fontSize: "12px", padding: "6px 8px"}}
+                  >
+                    {week}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="upload-area" style={{
+              border: "2px dashed var(--pink-m)",
+              borderRadius: "16px",
+              padding: "40px 20px",
+              textAlign: "center",
+              background: "var(--pink-l)",
+              margin: "20px 0",
+              cursor: "pointer",
+              transition: "all 0.3s ease"
+            }}>
+              <input 
+                id="modal-photo-upload" 
+                type="file" 
+                accept="image/*" 
+                style={{display:"none"}} 
+                onChange={(e) => {
+                  handleUpload(e);
+                  setUploadModalOpen(false);
+                }}
+              />
+              <label htmlFor="modal-photo-upload" style={{cursor: "pointer", display: "block"}}>
+                <div style={{fontSize: "48px", marginBottom: "16px"}}>📸</div>
+                <p style={{margin: "0 0 8px 0", color: "var(--muted)", fontSize: "16px"}}>
+                  Click to browse or drag and drop
+                </p>
+                <p style={{margin: 0, color: "var(--pink)", fontSize: "14px", fontWeight: "500"}}>
+                  Supports: JPG, PNG, GIF, WebP
+                </p>
+              </label>
+            </div>
+            <div style={{display: "flex", gap: "12px", justifyContent: "center", marginTop: "24px"}}>
+              <button 
+                className="btn-main" 
+                onClick={() => document.getElementById('modal-photo-upload').click()}
+              >
+                Choose File
+              </button>
+              <button 
+                className="btn-ghost" 
+                onClick={() => setUploadModalOpen(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* VIDEOS */}
       <section id="videos" className="sec">
