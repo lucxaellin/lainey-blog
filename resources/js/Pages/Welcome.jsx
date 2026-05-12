@@ -19,21 +19,23 @@ function FloatingHearts() {
 }
 
 const weekBlogs = {
-  "Week 1": { emoji:"🌸", content:"This week I explored the basics of web design and started learning React! It was overwhelming at first but I'm getting the hang of it. Every bug I fixed felt like unlocking a new achievement! 💪✨" },
-  "Week 2": { emoji:"🎨", content:"Deep dive into CSS and styling this week. I discovered the magic of flexbox and grid layouts. My pages are finally starting to look the way I imagined them in my head! 🎨" },
-  "Week 3": { emoji:"💻", content:"This week was all about JavaScript fundamentals — functions, loops, arrays. It's like learning a new language but for computers. The logic is starting to click! 🧠💡" },
-  "Week 4": { emoji:"🚀", content:"Started learning about React hooks and state management! useState and useEffect are becoming my new best friends. Building interactive components is so exciting! 🎯" },
-  "Week 5": { emoji:"📱", content:"Responsive design week! Made sure all my components look great on mobile, tablet, and desktop. Media queries are tricky but so important for user experience! 📐" },
-  "Week 6": { emoji:"🔧", content:"Debugging and optimization week! Learned about React DevTools, performance optimization, and how to write cleaner code. My apps are running smoother than ever! ⚡" },
-  "Week 7": { emoji:"🎭", content:"Explored animations and transitions this week. Added smooth hover effects, page transitions, and micro-interactions. Making the UI feel alive and responsive! ✨" },
-  "Week 8": { emoji:"🗄️", content:"Database week! Learned about SQL basics, data modeling, and how to connect frontend to backend. Understanding how data flows through an application is fascinating! 🔄" },
-  "Week 9": { emoji:"🔐", content:"Security and authentication! Implemented user login systems, learned about JWT tokens, and best practices for keeping user data safe. Security is everyone's responsibility! 🛡️" },
-  "Week 10": { emoji:"🧪", content:"Testing week! Discovered the importance of unit tests, integration tests, and writing testable code. Catching bugs before they reach production is a game changer! 🐛" },
-  "Week 11": { emoji:"📊", content:"API integration week! Connected to external APIs, handled async data, and learned about error handling. Building real-world applications that talk to other services! 🌐" },
-  "Week 12": { emoji:"🎓", content:"Final project week! Put everything together - frontend, backend, database, and deployment. Feeling proud of how far I've come and excited for what's next! 🌟" },
+  "Week 1": { title:"Orientation to Bicol University Cluster II Administrative Office and Task Assignment", content:"During this week, we started with simple office tasks to help us become familiar with the working environment of Cluster II Administrative Office. Ma'am Mitch assigned me to prepare the attendance sheet for the whole month of February and print the Officer of the Day schedule for the same month. I was also assigned to help fix and organize the table where all staff members record their attendance every day. These tasks may seem simple, but they helped me understand the importance of organization and accuracy in office work. I made sure that all files and printed documents were complete and properly arranged before submitting them. On Friday, we had a meeting with all the administrative officers where Ma'am Mitch formally introduced us to the office workflow and assigned each of us our respective mentors who would guide us throughout our internship. After explaining how the office processes documents and handles daily transactions, she assigned me another task, which was to generate QR codes for office forms to make them easily accessible for faculty members whenever they need forms related to cash advances, liquidation, and other office transactions. I completed the QR codes, organized them properly, and submitted them through Google Drive before the end of the day." },
+  "Week 2": { title:"Organization and Sorting of Office Documents", content:"This week, we officially started working with our assigned mentors. I was assigned to Ma'am Mau, who handles incoming and outgoing documents in the office. Before introducing me to the actual document handling process, Ma'am Mau first assigned me to organize and sort files stored in the storage room. I spent most of the week reviewing, filing, and arranging documents according to their proper classifications. Some documents had been stored for a long time, so proper sorting and organization were needed to make them easier to access whenever needed. I handled different documents from various colleges under Cluster II, including files from BUCAL, BUGS, BUCL, BULC, BUJMRIGD, and BUCDM. Although the work involved handling a large number of papers, it helped me develop patience, attention to detail, and a better understanding of how records are managed in an administrative office. I made sure that all assigned documents were properly organized and completed within the week so that we could proceed to handling actual incoming and outgoing documents the following week." },
+  "Week 3": { title:"Handling of Incoming and Outgoing Documents and Disbursement Vouchers", content:"During this week, Ma'am Mau taught me how to properly record incoming and outgoing documents and how to handle disbursement vouchers. She explained the step-by-step process of logging document details, recording transactions, and routing documents to the appropriate offices for approval and processing. At first, I carefully observed how she performed the tasks, and after understanding the process, I was gradually entrusted to do the work on my own under her guidance. As the week progressed, I became more involved in the daily operations of the office. There were times when I needed to visit different colleges and offices to secure signatures from deans and other authorized personnel in order to complete document processing. I was responsible for recording and monitoring documents that entered and left the Cluster II Administrative Office every day. Whenever there was free time, Ma'am Mau would also assign me additional tasks such as sorting and organizing files. This week helped me become more confident in handling office documents and managing administrative responsibilities independently." },
+  "Week 4": { title:"Record Digitalization and Continues of Handling of Incoming and Outgoing Documents and Disbursement Vouchers", content:"During this week, I continued handling incoming and outgoing documents, as well as recording and monitoring disbursement vouchers in the Cluster II Administrative Office. Since the number of documents coming in was manageable, I was able to balance my regular responsibilities while assisting with other office tasks. By this time, I had already become more familiar with the workflow, which allowed me to handle document tracking with more confidence and accuracy. I made sure that every document was properly recorded before being forwarded to the appropriate office or personnel. Whenever there were fewer documents to process, Ma'am Mau assigned me to digitize all the records from the logbooks for incoming and outgoing documents, including disbursement vouchers. I carefully transferred the records into Google Sheets to create digital copies for easier tracking and backup purposes. Aside from digitization, Ma'am Mau also assigned me additional tasks such as shredding unnecessary documents and preparing attendance sheets for the months of March, April, and May. This week allowed me to experience both physical and digital record management." },
+  "Week 5": { title:"Concept Development and Data Gathering for the Cluster II Document Record Management System", content:"For this week, I continued handling incoming and outgoing documents, recording disbursement vouchers, and updating digital records. While working on these tasks every day, I noticed how time-consuming it was to search for old records manually, especially when there were already large volumes of documents being handled in the office. This observation gave me the idea of creating a system that could store records digitally and make document tracking easier and faster for the Cluster II Administrative Office. I presented this concept to Ma'am Mitch, and she appreciated and approved the idea. After discussing the concept, Sir Davie assigned a capstone group to work on developing the full system since system development would require a team and more time. It was then decided that I would guide the capstone group while also creating a small temporary system that Cluster II could use while the full system was still under development. Throughout the week, I started gathering data, identifying system requirements, and observing the office workflow more closely while continuing my regular document management responsibilities." },
+  "Week 6": { title:"Continues Data Gathering and Initial Prototype Development of the Cluster II Document Record Management System", content:"This week, I continued managing document tracking while also focusing on gathering the necessary information needed for the development of the system. I observed the workflow more carefully and listed the features, forms, and records that needed to be included in the system. I also presented my initial concept and ideas to Ma'am Mitch to gather her suggestions and make sure that the system would match the actual needs of the office. At the same time, I started using Figma to visualize the system design and create the initial interface. I designed several webpages and adjusted the layout based on Ma'am Mitch's feedback and recommendations. Aside from system development, I continued assisting Ma'am Mau with document sorting and other urgent office tasks. I also helped guide the capstone group by creating a workflow and explaining the office process so they could better understand the system requirements." },
+  "Week 7": { title:"Prototype Enhancement and Feature Development of the C2DRMS", content:"During this week, I continued improving the system prototype by enhancing the Figma design and making adjustments based on the required features and office needs. I focused on refining the user interface and organizing the layout to make it more suitable for document record management. I also reviewed the workflow to make sure that the design aligned with the actual processes in the office. This week became more challenging because there were changes in task assignments within our internship group. Kristelle was reassigned to a different office and turned over some of her tasks to me. At the same time, my mentorship assignment also changed, and I was now assigned under Ma'am Rubs and Ma'am Jing. Because of these changes, I received additional responsibilities while continuing to work on the system prototype and managing my regular office tasks." },
+  "Week 8": { title:"Frontend Integration of the C2DRMS and System Presentation with Capstone Group", content:"This week, I officially completed the Figma design of the system and started working on the frontend development. I began transforming the design into an actual working interface while making sure that the pages followed the approved layout and requirements. I also continued assisting the capstone group by providing them with the information and workflow they needed for their system development. Aside from development work, I also handled several office tasks assigned by Ma'am Jing and Ma'am Rubs. These included sorting urgent documents, organizing files with deadlines, and compiling important records such as faculty Form 7 documents. Due to the heavy workload this week, my progress in frontend development was gradual, but I still managed to complete important parts of the interface while balancing my office responsibilities." },
+  "Week 9": { title:"Frontend Refinement of the C2DRMS and Document Digitization", content:"During this week, I continued working on the frontend design of the system with the goal of completing it before the end of the week. I focused on improving the layout, navigation, and overall user interface to make sure that it would be functional and easy to use. I reviewed each page carefully and fixed any design issues that I encountered during development. At the same time, I continued helping Ma'am Rubs with document-related tasks that had deadlines. I digitized some records assigned to me and reviewed several entries in Google Sheets to make sure that the information was accurate and complete. By the end of the week, I presented the frontend design to Ma'am Mitch to gather her feedback and identify any adjustments needed before proceeding to backend development." },
+  "Week 10": { title:"Backend Integration and Functional Development of the C2DRMS", content:"For this week, I finalized the frontend design and implemented the adjustments suggested by Ma'am Mitch. After completing the user interface, I officially started working on the backend development of the Cluster II Document Record Management System. I began building the core functionalities needed for record storage, document tracking, and data management. Aside from system development, I continued helping Ma'am Rubs with document preparation. I sorted important records and photocopied faculty documents to prepare multiple copies for the administration, Human Resources, and backup purposes. Although I encountered some technical challenges while working on certain webpages, I continued troubleshooting and balancing my development tasks with my office responsibilities." },
+  "Week 11": { title:"Backend Enhancement and System Function Testing of the C2DRMS", content:"This week, I continued working on the backend development of the system and focused on implementing the necessary functionalities and data processing features. I carefully tested different parts of the system to make sure that each page and function was working properly before moving to the next phase of development. At the same time, Ma'am Rubs assigned me to double-check faculty documents and bind the photocopied records that I prepared the previous week. I carefully reviewed each document to make sure that all files were complete, properly arranged, and ready for submission. After completing these tasks, I continued system development and started preparing for database integration." },
+  "Week 12": { title:"Database Integration and Faculty Thesis Fee Record Sorting", content:"During this week, I successfully connected the database to the system and started integrating the records into the platform. I focused on making sure that the system could properly store, retrieve, and organize document records according to the office workflow. This was an important stage in development because it allowed the system to become more functional and closer to completion. Aside from system development, Ma'am Jing assigned me to sort each faculty member's thesis fee records so that pending payments could be monitored properly. Throughout the week, I balanced office responsibilities with system debugging and testing. I spent most of my time doing trial-and-error testing, identifying errors, and fixing issues found in the system." },
+  "Week 13": { title:"System Finalization and Faculty Thesis Fee Record Verification", content:"This week, I focused on finalizing the Cluster II Document Record Management System by fixing remaining errors, improving system performance, and adjusting features based on testing results. I reviewed each function carefully to make sure that the system was stable and ready for presentation. At the same time, I continued organizing faculty thesis fee records in Google Sheets and updating missing information whenever necessary. By the end of the week, I successfully completed the final adjustments to the system and prepared all necessary materials for the final presentation scheduled for the following week." },
+  "Week 14": { title:"Presentation of the C2DRMS and Finalizing Documents", content:"For my final week in the office, I focused on preparing for the presentation of the Cluster II Document Record Management System. I reviewed the features, tested the functionalities, and made final adjustments to ensure that everything would work properly during the demonstration. I also prepared myself to explain the purpose, workflow, and features of the system to the administrative officers. During the presentation, I presented the system to all the administrative officers of the Cluster II Administrative Office, including Ma'am Mitch. I explained how the system works, demonstrated its features, and answered their questions regarding its functions and possible improvements. Since it was my last week of internship, Ma'am Mitch informed me that they would coordinate with the Information and Communications Technology Office for the deployment of the system. Although my OJT had officially ended, I was asked to continue assisting during the deployment process if needed." },
 };
 
-const photoWeeks = ["Week 1","Week 2","Week 3","Week 4","Week 5","Week 6","Week 7","Week 8","Week 9","Week 10","Week 11","Week 12"];
+const photoWeeks = ["Week 1","Week 2","Week 3","Week 4","Week 5","Week 6","Week 7","Week 8","Week 9","Week 10","Week 11","Week 12","Week 13","Week 14"];
 const placeholderColors = ["#fce7f3","#fef3c7","#d1fae5","#dbeafe","#ede9fe","#fce7f3","#fef3c7","#d1fae5","#dbeafe","#ede9fe","#fce7f3","#fef3c7"];
 
 // Different photos for each week
@@ -45,6 +47,22 @@ const weekPhotos = {
     { id:4, src:"https://picsum.photos/seed/week1-4/300/300.jpg", color:"#dbeafe", label:"Environment 🌱" },
     { id:5, src:"https://picsum.photos/seed/week1-5/300/300.jpg", color:"#ede9fe", label:"Tools 🔧" },
     { id:6, src:"https://picsum.photos/seed/week1-6/300/300.jpg", color:"#fce7f3", label:"Progress 📈" },
+  ],
+  "Week 13": [
+    { id:13, src:"https://picsum.photos/seed/week13-1/300/300.jpg", color:"#e0f2fe", label:"Advanced Patterns 🎯" },
+    { id:14, src:"https://picsum.photos/seed/week13-2/300/300.jpg", color:"#fbbf24", label:"Architecture 🏗️" },
+    { id:15, src:"https://picsum.photos/seed/week13-3/300/300.jpg", color:"#fef3c7", label:"Performance ⚡" },
+    { id:16, src:"https://picsum.photos/seed/week13-4/300/300.jpg", color:"#dbeafe", label:"Optimization 🔧" },
+    { id:17, src:"https://picsum.photos/seed/week13-5/300/300.jpg", color:"#ede9fe", label:"Best Practices 📋" },
+    { id:18, src:"https://picsum.photos/seed/week13-6/300/300.jpg", color:"#fce7f3", label:"Code Quality 🏆" },
+  ],
+  "Week 14": [
+    { id:19, src:"https://picsum.photos/seed/week14-1/300/300.jpg", color:"#f0abfc", label:"Full Stack 🚀" },
+    { id:20, src:"https://picsum.photos/seed/week14-2/300/300.jpg", color:"#dbeafe", label:"DevOps 🛠️" },
+    { id:21, src:"https://picsum.photos/seed/week14-3/300/300.jpg", color:"#fef3c7", label:"Deployment 🌐" },
+    { id:22, src:"https://picsum.photos/seed/week14-4/300/300.jpg", color:"#fbbf24", label:"Production 🏭️" },
+    { id:23, src:"https://picsum.photos/seed/week14-5/300/300.jpg", color:"#e0f2fe", label:"Monitoring 📊" },
+    { id:24, src:"https://picsum.photos/seed/week14-6/300/300.jpg", color:"#fce7f3", label:"Success 🎉" },
   ],
   "Week 2": [
     { id:7, src:"https://picsum.photos/seed/week2-1/300/300.jpg", color:"#fef3c7", label:"CSS Magic 🎨" },
@@ -148,7 +166,7 @@ export default function Blog() {
   const [passwordModalOpen, setPasswordModalOpen] = useState(false);
   const [passwordError, setPasswordError] = useState("");
   const [selectedUploadWeek, setSelectedUploadWeek] = useState("Week 1");
-  const [weekPhotos, setWeekPhotos] = useState({
+  const [editableWeekPhotos, setEditableWeekPhotos] = useState({
     "Week 1": [
       { id:1, src:"https://picsum.photos/seed/week1-1/300/300.jpg", color:"#fce7f3", label:"Setup Day 🖥️" },
       { id:2, src:"https://picsum.photos/seed/week1-2/300/300.jpg", color:"#fef3c7", label:"First Code 💻" },
@@ -256,7 +274,7 @@ export default function Blog() {
     const newPhoto = { id: Date.now(), src: url, color:"#fce7f3", label:`Photo ${Date.now()}` };
     
     // Add photo to the selected week
-    setWeekPhotos(prev => ({
+    setEditableWeekPhotos(prev => ({
       ...prev,
       [selectedUploadWeek]: [...(prev[selectedUploadWeek] || []), newPhoto]
     }));
@@ -280,8 +298,8 @@ export default function Blog() {
   // Update photos when active photo week changes
   React.useEffect(() => {
     const currentWeek = photoWeeks[currentPhotoWeek];
-    setPhotos(weekPhotos[currentWeek] || []);
-  }, [currentPhotoWeek]);
+    setPhotos(editableWeekPhotos[currentWeek] || []);
+  }, [currentPhotoWeek, editableWeekPhotos]);
 
   // Carousel helper functions
   const getScrollOffset = (activeIndex) => {
@@ -348,7 +366,7 @@ export default function Blog() {
           background:linear-gradient(135deg,#fce7f3 0%,#fffbeb 50%,#ede9fe 100%);
           padding:80px 64px;
         }
-        .hero-content{position:relative;z-index:2;max-width:580px;animation:fadeUp .9s .2s both;}
+        .hero-content{position:relative;z-index:2;max-width:580px;margin-left:40px;animation:fadeUp .9s .2s both;}
         .hero-pill{
           display:inline-flex;align-items:center;gap:6px;
           background:#fff;border:2px solid var(--pink-m);border-radius:50px;
@@ -709,7 +727,7 @@ export default function Blog() {
       <nav>
         <div className="nav-logo">Lainey's Blog 🌸</div>
         <ul className="nav-links">
-          {[["home","Home"],["about","About Me"],["weekly-blog","Weekly Blog"],["photos","Photos"],["videos","Videos"]].map(([id,label])=>(
+          {[["home","Home"],["about","About Me"],["weekly-blog","Weekly Blog"],["photos","Photos"],["videos","my experience"]].map(([id,label])=>(
             <li key={id}><a href={`#${id}`} onClick={e=>{e.preventDefault();scrollTo(id);}}>{label}</a></li>
           ))}
         </ul>
@@ -752,7 +770,7 @@ export default function Blog() {
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer laoreet arcu sit amet leo porta, id placerat ex interdum. Fusce fermentum ornare lectus, ut dictum turpis convallis vitae.</p>
               <p style={{marginTop:14}}>Nunc semper vitae nibh sit amet dignissim. Nunc lorem nunc, placerat et augue ac, elementum mollis turpis. Ut sit amet tempus ante. Suspendisse tempus augue eget iaculis posuere. In hac habitasse platea dictumst. Duis sollicitudin erat ac urna maximus fermentum.</p>
             </p>
-            <button className="btn-main" style={{marginTop:28}} onClick={()=>scrollTo("weekly-blog")}>Read my blog 📖</button>
+            <button className="btn-main" style={{marginTop:28}} onClick={()=>scrollTo("conclusion")}>How way Lainey's OJT? </button>
           </div>
         </div>
       </section>
@@ -762,7 +780,7 @@ export default function Blog() {
         <div style={{textAlign:"center"}}>
           <div className="sec-label" style={{margin:"0 auto 14px"}}>✦ Updates</div>
           <h2 className="sec-title">Weekly <span>Blog</span></h2>
-          <p style={{color:"var(--muted)",marginTop:10,fontSize:".9rem"}}>Click a card to read more 💌</p>
+          <p style={{color:"var(--muted)",marginTop:20,fontSize:".9rem"}}>Click a card to read more 💌</p>
         </div>
         
         <div className="blog-carousel-container">
@@ -777,8 +795,7 @@ export default function Blog() {
                    onClick={()=>setBlogOpen(week)}
                    onMouseEnter={()=>handleCardHover(i)}
                    onMouseLeave={handleCardLeave}>
-                <span className="blog-emoji">{data.emoji}</span>
-                <div className="blog-week">{week}</div>
+                <div className="blog-week">{week}: {data.title}</div>
                 <p className="blog-preview">{data.content}</p>
                 <span className="blog-cta">Read more →</span>
               </div>
@@ -826,10 +843,7 @@ export default function Blog() {
             <div className="sec-label">✦ Gallery</div>
             <h2 className="sec-title">Photos <span>✨</span></h2>
           </div>
-          <label className="upload-lbl" onClick={() => setPasswordModalOpen(true)}>
-            📷 Upload Image
-          </label>
-        </div>
+                  </div>
         <div className="week-tabs">
           <button className="nav-arrow" onClick={() => setButtonGroupStart(Math.max(0, buttonGroupStart - 1))} disabled={buttonGroupStart === 0}>‹</button>
           {photoWeeks.slice(buttonGroupStart, buttonGroupStart + 9).map((w, i) => (
@@ -987,20 +1001,17 @@ export default function Blog() {
       {/* VIDEOS */}
       <section id="videos" className="sec">
         <div style={{textAlign:"center"}}>
-          <div className="sec-label" style={{margin:"0 auto 14px"}}>✦ Watch</div>
-          <h2 className="sec-title">Random <span>Videos</span></h2>
+          <div className="sec-label" style={{margin:"0 auto 14px"}}>✦ Learning</div>
+          <h2 className="sec-title">What I've learned in <span>BU Cluster II</span></h2>
         </div>
-        <div className="vid-grid">
-          {[
-            {id:1,src:"https://www.w3schools.com/html/mov_bbb.mp4",label:"Video 1 🎬"},
-            {id:2,src:"https://www.w3schools.com/html/movie.mp4",label:"Video 2 🎥"},
-            {id:3,src:"https://www.w3schools.com/html/mov_bbb.mp4",label:"Video 3 🌟"},
-          ].map(v=>(
-            <div key={v.id} className="vid-card">
-              <video controls><source src={v.src} type="video/mp4"/></video>
-              <div className="vid-label">{v.label}</div>
-            </div>
-          ))}
+        <div style={{maxWidth:"800px", margin:"40px auto"}}>
+          <p style={{fontSize:"1rem", lineHeight:"1.8", color:"var(--muted)", textAlign:"center"}}>
+            BU Cluster II has been an incredible journey of technical growth and practical application. 
+            I've learned advanced frontend frameworks, responsive design, and modern JavaScript practices for web development.
+            In database design, I've mastered relational database modeling, SQL optimization, and data integrity principles.
+            System analysis has taught me requirements gathering, system architecture, and effective project management.
+            Every challenge has strengthened my problem-solving skills and prepared me for real-world development.
+          </p>
         </div>
       </section>
 
@@ -1184,7 +1195,7 @@ export default function Blog() {
             <h2 className="sec-title">Lainey's <span>Internship Chronicles</span></h2>
             <p className="about-text" style={{marginTop:0}}>
               <p>Documenting my professional journey through the tech industry! From first-day jitters to project victories, every experience shapes my growth as a developer. Join me as I navigate the world of internships and discover what it takes to succeed in the tech workplace.</p>
-              <p style={{marginTop:14}}>Building skills, making connections, and creating impact! 🚀</p>
+              <p style={{marginTop:14}}>Building skills, making connections, and creating impact!</p>
             </p>
             <div className="hero-btns" style={{marginTop:28}}>
               <button className="btn-main" onClick={()=>window.location.href='mailto:elaine@example.com'}>Contact Me 💌</button>
@@ -1198,9 +1209,7 @@ export default function Blog() {
       <footer>
         <span className="f-logo">Lainey's Portfolio 🌸</span>
         <ul className="f-links">
-          {[["home","Home"],["about","About Me"],["weekly-blog","Weekly Blog"],["photos","Photos"],["videos","Videos"],["contact","Contact"]].map(([id,label])=>(
-            <li key={id}><a href={`#${id}`} onClick={e=>{e.preventDefault();scrollTo(id);}}>{label}</a></li>
-          ))}
+          
         </ul>
         <span className="f-copy">© 2025 Elaine Mae A. Bertiz · BSIT 4C 💗</span>
       </footer>
