@@ -1221,7 +1221,7 @@ export default function Blog() {
               <p style={{marginTop:14}}>This experience helped me become more confident, responsible, flexible, and resourceful. It showed me that I can handle multiple responsibilities, solve problems independently, and continue learning even when faced with challenges.</p>
             </div>
             <div className="hero-btns" style={{marginTop:28}}>
-              <button className="btn-main" onClick={()=>window.location.href='mailto:elaine@example.com'}>Contact Me 💌</button>
+              <button className="btn-main" onClick={()=>window.location.href='mailto:elainebertiz258@gmail.com'}>Contact Me 💌</button>
               <button className="btn-ghost" onClick={()=>window.open('https://linkedin.com', '_blank')}>LinkedIn Profile →</button>
             </div>
           </div>
@@ -1234,7 +1234,7 @@ export default function Blog() {
         <ul className="f-links">
           
         </ul>
-        <span className="f-copy">© 6 Elaine Mae A. Bertiz · BSIT 4C 💗</span>
+        <span className="f-copy">©2026 Elaine Mae A. Bertiz · BSIT 4C 💗</span>
       </footer>
     </>
   );
