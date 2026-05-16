@@ -447,12 +447,12 @@ export default function Blog() {
           padding:8px 22px;font-family:'Dancing Script',cursive;font-size:1.2rem;
           box-shadow:4px 4px 0 var(--pink-m);white-space:nowrap;
         }
-        .about-text p{font-size:.96rem;color:var(--muted);line-height:1.8;margin-top:16px;}
+        .about-text p{font-size:.96rem;color:var(--muted);line-height:1.8;margin-top:16px;text-align:justify;}
 
         /* BLOG */
         #weekly-blog{background:linear-gradient(160deg,var(--pink-l),var(--cream));}
         .blog-carousel-container{
-          position:relative;width:1000px;<height:300>px;margin:40px auto 0;
+          position:relative;width:1000px;margin:40px auto 0;
           overflow:hidden;border-radius:24px;
           padding-top:20px;
           padding-bottom:20px;
@@ -525,7 +525,7 @@ export default function Blog() {
           animation:fadeIn .25s both;padding:20px;
         }
         .modal{
-          background:#fff;border-radius:32px;padding:48px;max-width:520px;width:100%;
+          background:#fff;border-radius:32px;padding:56px;max-width:1100px;width:92vw;max-height:85vh;overflow-y:auto;
           border:2px solid var(--pink-m);box-shadow:0 32px 80px #f472b640;
           animation:popIn .3s both;position:relative;
         }
@@ -538,7 +538,7 @@ export default function Blog() {
         .modal-x:hover{background:var(--pink-m);}
         .modal-emoji{font-size:3rem;margin-bottom:12px;display:block;}
         .modal-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;}
-        .modal-body{font-size:1rem;color:var(--muted);line-height:1.8;margin-top:16px;}
+        .modal-body{font-size:1rem;color:var(--muted);line-height:1.9;margin-top:16px;text-align:justify;}
 
         /* PHOTOS */
         #photos{background:var(--cream);}
@@ -745,7 +745,7 @@ export default function Blog() {
           <div className="hero-pill">✦ BSIT 4C Student</div>
           <h1 className="hero-name">Elaine Mae<br /><em>A. Bertiz</em></h1>
           <p className="hero-sub">Lainey's Blog ✨</p>
-          <p className="hero-desc">Welcome to my internship blog, where I share my On-the-Job Training journey at the Bicol University Cluster II Administrative Office. This space documents my weekly tasks, learnings, challenges, and the development of the Cluster II Document Record Management System. 💗</p>
+          <p className="hero-desc">A glimpse into my OJT journey, growth, and experiences at BU Cluster II. ✨</p>
           <div className="hero-btns">
             <button className="btn-main" onClick={()=>scrollTo("about")}>Meet Lainey 🌷</button>
             <button className="btn-ghost" onClick={()=>scrollTo("weekly-blog")}>Read Blog →</button>
@@ -766,11 +766,11 @@ export default function Blog() {
           <div>
             <div className="sec-label">✦ About Me</div>
             <h2 className="sec-title">I'm <span>Lainey!</span></h2>
-            <p className="about-text" style={{marginTop:0}}>
+            <div className="about-text" style={{marginTop:0}}>
               <p>As part of the Bachelor of Science in Information Technology program, I completed my On-the-Job Training at the Bicol University Cluster II Administrative Office located in A.P. Bonto Building, Legazpi City. During my internship, I was exposed to the actual working environment of an administrative office where I handled clerical and technical responsibilities.</p>
               <p style={{marginTop:14}}>My tasks included handling incoming and outgoing documents, organizing office records, digitizing files, recording disbursement vouchers, and assisting in daily operations. I also conceptualized and developed the Cluster II Document Record Management System, a web-based system created to support document recording, tracking, and digital record management.</p>
-            </p>
-            <button className="btn-main" style={{marginTop:28}} onClick={()=>scrollTo("conclusion")}>How way Lainey's OJT? </button>
+            </div>
+            <button className="btn-main" style={{marginTop:28}} onClick={()=>scrollTo("conclusion")}>How was Lainey's OJT?</button>
           </div>
         </div>
       </section>
@@ -787,38 +787,46 @@ export default function Blog() {
           <div className="blog-carousel" style={{
             transform: `translateX(-${getScrollOffset(activeBlogWeek)}px)`
           }}>
-            {Object.entries(weekBlogs).map(([week,data],i)=>(
-              <div key={week} 
-                   className={`blog-card ${isCardActive(i, activeBlogWeek) ? 'active' : ''}`} 
-                   data-hovered={hoveredWeek === i ? 'true' : 'false'}
-                   style={{}} 
-                   onClick={()=>setBlogOpen(week)}
-                   onMouseEnter={()=>handleCardHover(i)}
-                   onMouseLeave={handleCardLeave}>
-                <div className="blog-week">{week}: {data.title}</div>
+            {Object.entries(weekBlogs).map(([week, data], idx) => (
+              <div 
+                className={`blog-card ${isCardActive(idx, activeBlogWeek) ? 'active' : ''}`}
+                key={week} 
+                onClick={()=>setBlogOpen(week)}
+                onMouseEnter={() => handleCardHover(idx)}
+                onMouseLeave={handleCardLeave}
+                data-hovered={hoveredWeek === idx}
+              >
+                <span className="blog-emoji">{data.emoji}</span>
+                <div className="blog-week">{week}</div>
                 <p className="blog-preview">{data.content}</p>
-                <span className="blog-cta">Read more →</span>
+                <span className="blog-cta">Read More</span>
               </div>
             ))}
           </div>
         </div>
         
         <div className="blog-nav">
-          <button className="blog-nav-btn" 
-                  onClick={()=>setActiveBlogWeek(getPreviousPage(activeBlogWeek))}
-                  disabled={activeBlogWeek === 0}>
+          <button 
+            className="blog-nav-btn" 
+            onClick={() => setActiveBlogWeek(getPreviousPage(activeBlogWeek))}
+            disabled={activeBlogWeek === 0}
+          >
             ‹
           </button>
           <div className="blog-week-indicators">
-            {Array.from({length: Math.ceil(Object.keys(weekBlogs).length / 3)}, (_, groupIndex) => (
-              <div key={groupIndex} 
-                   className={`blog-dot ${Math.floor(activeBlogWeek / 3) === groupIndex ? 'active' : ''}`}
-                   onClick={()=>setActiveBlogWeek(groupIndex * 3)}/>
+            {Array.from({ length: Math.ceil(Object.keys(weekBlogs).length / 3) }, (_, i) => (
+              <div 
+                key={i}
+                className={`blog-dot ${Math.floor(activeBlogWeek / 3) === i ? 'active' : ''}`}
+                onClick={() => setActiveBlogWeek(i * 3)}
+              />
             ))}
           </div>
-          <button className="blog-nav-btn" 
-                  onClick={()=>setActiveBlogWeek(getNextPage(activeBlogWeek))}
-                  disabled={activeBlogWeek >= Object.keys(weekBlogs).length - 3}>
+          <button 
+            className="blog-nav-btn" 
+            onClick={() => setActiveBlogWeek(getNextPage(activeBlogWeek))}
+            disabled={activeBlogWeek >= Object.keys(weekBlogs).length - 3}
+          >
             ›
           </button>
         </div>
@@ -829,8 +837,8 @@ export default function Blog() {
         <div className="overlay" onClick={()=>setBlogOpen(null)}>
           <div className="modal" onClick={e=>e.stopPropagation()}>
             <button className="modal-x" onClick={()=>setBlogOpen(null)}>✕</button>
-            <span className="modal-emoji">{weekBlogs[blogOpen].emoji}</span>
-            <div className="modal-title">{blogOpen}</div>
+            <span className="modal-emoji">🌸</span>
+            <div className="modal-title">{blogOpen}: {weekBlogs[blogOpen].title}</div>
             <p className="modal-body">{weekBlogs[blogOpen].content}</p>
           </div>
         </div>
@@ -841,25 +849,41 @@ export default function Blog() {
         <div className="photos-top">
           <div>
             <div className="sec-label">✦ Gallery</div>
-            <h2 className="sec-title">Photos <span>✨</span></h2>
+            <h2 className="sec-title">Photo <span>Diary</span></h2>
           </div>
-                  </div>
-        <div className="week-tabs">
-          <button className="nav-arrow" onClick={() => setButtonGroupStart(Math.max(0, buttonGroupStart - 1))} disabled={buttonGroupStart === 0}>‹</button>
-          {photoWeeks.slice(buttonGroupStart, buttonGroupStart + 9).map((w, i) => (
-            <button key={w} className={`w-tab${buttonGroupStart + i === currentPhotoWeek ? " on" : ""}`} onClick={() => setCurrentPhotoWeek(buttonGroupStart + i)}>{w}</button>
-          ))}
-          <button className="nav-arrow" onClick={() => setButtonGroupStart(Math.min(photoWeeks.length - 9, buttonGroupStart + 1))} disabled={buttonGroupStart >= photoWeeks.length - 9}>›</button>
+          <button className="upload-lbl" onClick={() => setPasswordModalOpen(true)}>
+            + Add Photo
+          </button>
         </div>
+
+        <div className="week-tabs">
+          <button 
+            className="nav-arrow" 
+            onClick={() => setButtonGroupStart(Math.max(0, buttonGroupStart - 5))}
+            style={{opacity: buttonGroupStart === 0 ? 0.3 : 1}}
+            disabled={buttonGroupStart === 0}
+          >‹</button>
+          {photoWeeks.slice(buttonGroupStart, buttonGroupStart + 5).map((w,i)=>(
+            <button key={w} className={`w-tab ${currentPhotoWeek===buttonGroupStart+i?'on':''}`} onClick={()=>setCurrentPhotoWeek(buttonGroupStart+i)}>
+              {w}
+            </button>
+          ))}
+          <button 
+            className="nav-arrow" 
+            onClick={() => setButtonGroupStart(Math.min(photoWeeks.length - 5, buttonGroupStart + 5))}
+            style={{opacity: buttonGroupStart >= photoWeeks.length - 5 ? 0.3 : 1}}
+            disabled={buttonGroupStart >= photoWeeks.length - 5}
+          >›</button>
+        </div>
+
         <div className="photo-grid">
-          {photos.slice(0,6).map((p,i)=>(
-            <div key={p.id} className="photo-card" style={{animationDelay:`${i*.08}s`}}>
-              {p.src
-                ? <img src={p.src} alt={p.label}/>
-                : <div className="photo-ph" style={{background:p.color}}>
-                    <span>🌸</span><small>{p.label}</small>
-                  </div>
-              }
+          {photos.map((p,i)=>(
+            <div className="photo-card" key={p.id || i}>
+              {p.src ? <img src={p.src} alt={p.label || `Photo ${i+1}`} /> : (
+                <div className="photo-ph" style={{background:p.color || placeholderColors[i%placeholderColors.length]}}>
+                  🌸<small>Upload Photo</small>
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -881,33 +905,32 @@ export default function Blog() {
                 placeholder="Enter password..."
                 style={{
                   width: "100%",
-                  padding: "12px 16px",
+                  padding: "14px 18px",
                   border: "2px solid var(--pink-m)",
-                  borderRadius: "8px",
+                  borderRadius: "12px",
                   fontSize: "16px",
                   outline: "none",
-                  transition: "all 0.3s ease"
+                  fontFamily: "'DM Sans', sans-serif"
                 }}
-                onKeyPress={(e) => {
+                onKeyDown={(e) => {
                   if (e.key === 'Enter') {
                     handlePasswordSubmit(e.target.value);
                   }
                 }}
-                onChange={(e) => setPasswordError("")}
                 autoFocus
               />
               {passwordError && (
-                <p style={{color: "#ff4444", fontSize: "14px", marginTop: "8px", textAlign: "center"}}>
+                <p style={{color: "#ef4444", fontSize: "14px", marginTop: "8px", textAlign: "center"}}>
                   {passwordError}
                 </p>
               )}
             </div>
-            <div style={{display: "flex", gap: "12px", justifyContent: "center", marginTop: "24px"}}>
+            <div style={{display: "flex", gap: "12px", justifyContent: "center"}}>
               <button 
                 className="btn-main" 
                 onClick={() => {
                   const input = document.querySelector('input[type="password"]');
-                  if (input) handlePasswordSubmit(input.value);
+                  handlePasswordSubmit(input.value);
                 }}
               >
                 Submit
@@ -940,9 +963,17 @@ export default function Blog() {
                 {photoWeeks.map((week) => (
                   <button
                     key={week}
-                    className={`w-tab ${selectedUploadWeek === week ? "on" : ""}`}
                     onClick={() => setSelectedUploadWeek(week)}
-                    style={{fontSize: "12px", padding: "6px 8px"}}
+                    style={{
+                      padding: "8px 12px",
+                      border: selectedUploadWeek === week ? "2px solid var(--pink)" : "2px solid var(--pink-m)",
+                      borderRadius: "12px",
+                      background: selectedUploadWeek === week ? "var(--pink)" : "#fff",
+                      color: selectedUploadWeek === week ? "#fff" : "var(--muted)",
+                      fontSize: "12px",
+                      cursor: "pointer",
+                      transition: "all 0.2s"
+                    }}
                   >
                     {week}
                   </button>
@@ -1005,8 +1036,8 @@ export default function Blog() {
           <h2 className="sec-title">What I've learned in <span>BU Cluster II</span></h2>
         </div>
         <div style={{maxWidth:"800px", margin:"40px auto"}}>
-          <p style={{fontSize:"1rem", lineHeight:"1.8", color:"var(--muted)", textAlign:"center"}}>
-            My internship at BU Cluster II helped me grow in both technical and professional aspects. I learned how to handle office documents properly, organize records, digitize files, and understand the flow of administrative transactions. I also improved my skills in designing interfaces, developing system functions, connecting a database, and testing system features. Through the development of the Cluster II Document Record Management System, I learned how technology can help improve document tracking and record management in an actual workplace.
+          <p style={{fontSize:"1rem", lineHeight:"1.8", color:"var(--muted)", textAlign:"justify"}}>
+            My internship at BU Cluster II helped me grow in both technical and professional aspects. I learned how to handle office documents properly, organize records, digitize files, and understand the flow of administrative transactions. I also improved my skills in designing interfaces, developing system features, connecting databases, testing functions, and solving technical problems. More than the technical skills, this experience taught me responsibility, patience, communication, time management, and confidence in working with others.
           </p>
         </div>
       </section>
@@ -1020,8 +1051,6 @@ export default function Blog() {
           <div className="about-blob-wrap">
             <div className="about-sticker">Internship Journey!</div>
             <div style={{marginTop:20, position:"relative", display:"inline-block"}}>
-              {/* Cute top banner with sparkles */}
-              
               {/* Cute side decorations */}
               <div style={{
                 position:"absolute",
@@ -1072,7 +1101,7 @@ export default function Blog() {
                 fontSize:"10px",
                 zIndex:3,
                 animation:"twinkle 2s ease-in-out 0.5s infinite"
-              }}>�</div>
+              }}>✨</div>
               <div style={{
                 position:"absolute",
                 bottom:"30px",
@@ -1182,17 +1211,15 @@ export default function Blog() {
                   }}
                 />
               </div>
-              
-              {/* Cute bottom tag */}
             </div>
           </div>
           <div>
             <div className="sec-label">✦ Experience</div>
             <h2 className="sec-title">Lainey's <span>Internship Chronicles</span></h2>
-            <p className="about-text" style={{marginTop:0}}>
+            <div className="about-text" style={{marginTop:0}}>
               <p>My internship at the Bicol University Cluster II Administrative Office became a meaningful part of my academic journey as an Information Technology student. Throughout my 486 hours of training, I was able to experience both clerical and technical responsibilities, from managing documents and organizing records to developing the Cluster II Document Record Management System.</p>
               <p style={{marginTop:14}}>This experience helped me become more confident, responsible, flexible, and resourceful. It showed me that I can handle multiple responsibilities, solve problems independently, and continue learning even when faced with challenges.</p>
-            </p>
+            </div>
             <div className="hero-btns" style={{marginTop:28}}>
               <button className="btn-main" onClick={()=>window.location.href='mailto:elaine@example.com'}>Contact Me 💌</button>
               <button className="btn-ghost" onClick={()=>window.open('https://linkedin.com', '_blank')}>LinkedIn Profile →</button>
@@ -1207,7 +1234,7 @@ export default function Blog() {
         <ul className="f-links">
           
         </ul>
-        <span className="f-copy">© 2025 Elaine Mae A. Bertiz · BSIT 4C 💗</span>
+        <span className="f-copy">© 6 Elaine Mae A. Bertiz · BSIT 4C 💗</span>
       </footer>
     </>
   );
