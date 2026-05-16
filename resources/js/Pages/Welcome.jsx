@@ -1230,7 +1230,7 @@ export default function Blog() {
 
       {/* FOOTER */}
       <footer>
-        <span className="f-logo">Lainey's Portfolio 🌸</span>
+        <span className="f-logo">Lainey's Blog 🌸</span>
         <ul className="f-links">
           
         </ul>
