@@ -1221,7 +1221,15 @@ export default function Blog() {
               <p style={{marginTop:14}}>This experience helped me become more confident, responsible, flexible, and resourceful. It showed me that I can handle multiple responsibilities, solve problems independently, and continue learning even when faced with challenges.</p>
             </div>
             <div className="hero-btns" style={{marginTop:28}}>
-              <button className="btn-main" onClick={()=>window.location.href='mailto:elainebertiz258@gmail.com'}>Contact Me 💌</button>
+              <button
+  className="btn-ghost"
+  onClick={() =>
+    window.location.href =
+      "mailto:elainebertiz258@gmail.com?subject=Hello%20Elaine&body=Hi%20Elaine,%0A%0A"
+  }
+>
+  Contact Me 💌
+</button>
               <button className="btn-ghost" onClick={()=>window.open('https://linkedin.com', '_blank')}>LinkedIn Profile →</button>
             </div>
           </div>
