@@ -61,7 +61,7 @@ const weekPhotos = {
     },
     {
       id: 5,
-      src: "/images/week2-1.jpg",
+      src: "/images/week2-1.JPG",
       color: "#ede9fe",
       label: "Week 2 Photo 2 📸"
     },
@@ -73,9 +73,66 @@ const weekPhotos = {
     }
   ],
 
-  "Week 3": [],
-  "Week 4": [],
-  "Week 5": [],
+  "Week 3": [
+    {
+      id: 7,
+      src: "/images/week3.JPG",
+      color: "#dbeafe",
+      label: "Week 3 Photo 1 📸"
+    },
+    {
+      id: 8,
+      src: "/images/week3-1.JPG",
+      color: "#ede9fe",
+      label: "Week 3 Photo 2 📸"
+    },
+    {
+      id: 9,
+      src: "/images/week3-2.JPG",
+      color: "#fce7f3",
+      label: "Week 3 Photo 3 📸"
+    }
+  ],
+  "Week 4": [
+    {
+      id: 8,
+      src: "/images/week4.JPG",
+      color: "#dbeafe",
+      label: "Week 4 Photo 1 📸"
+    },
+    {
+      id: 9,
+      src: "/images/week4-1.JPG",
+      color: "#ede9fe",
+      label: "Week 4 Photo 2 📸"
+    },
+    {
+      id: 10,
+      src: "/images/week4-2.JPG",
+      color: "#fce7f3",
+      label: "Week 4 Photo 3 📸"
+    }
+  ],
+  "Week 5": [
+    {
+      id: 11,
+      src: "/images/week5.JPG",
+      color: "#dbeafe",
+      label: "Week 5 Photo 1 📸"
+    },
+    {
+      id: 12,
+      src: "/images/week5-1.JPG",
+      color: "#ede9fe",
+      label: "Week 5 Photo 2 📸"
+    },
+    {
+      id: 13,
+      src: "/images/week4-2.JPG",
+      color: "#fce7f3",
+      label: "Week 5 Photo 3 📸"
+    }
+  ],
   "Week 6": [],
   "Week 7": [],
   "Week 8": [],
