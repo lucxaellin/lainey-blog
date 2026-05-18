@@ -128,7 +128,7 @@ const weekPhotos = {
     },
     {
       id: 13,
-      src: "/images/week4-2.JPG",
+      src: "/images/week5-2.JPG",
       color: "#fce7f3",
       label: "Week 5 Photo 3 📸"
     }
