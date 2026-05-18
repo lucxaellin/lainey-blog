@@ -37,6 +37,7 @@ const weekBlogs = {
 
 const photoWeeks = ["Week 1","Week 2","Week 3","Week 4","Week 5","Week 6","Week 7","Week 8","Week 9","Week 10","Week 11","Week 12","Week 13","Week 14"];
 const placeholderColors = ["#fce7f3","#fef3c7","#d1fae5","#dbeafe","#ede9fe","#fce7f3","#fef3c7","#d1fae5","#dbeafe","#ede9fe","#fce7f3","#fef3c7"];
+const limitPhotos = (items = []) => items.slice(0, 4);
 
 // Different photos for each week
 const weekPhotos = {
@@ -161,7 +162,7 @@ export default function Blog() {
   const [activePhotoWeek, setActivePhotoWeek] = useState(0);
   const [currentPhotoWeek, setCurrentPhotoWeek] = useState(0);
   const [buttonGroupStart, setButtonGroupStart] = useState(0);
-  const [photos, setPhotos] = useState(weekPhotos["Week 1"]);
+  const [photos, setPhotos] = useState(limitPhotos(weekPhotos["Week 1"]));
   const [uploadModalOpen, setUploadModalOpen] = useState(false);
   const [passwordModalOpen, setPasswordModalOpen] = useState(false);
   const [passwordError, setPasswordError] = useState("");
@@ -273,15 +274,15 @@ export default function Blog() {
     const url = URL.createObjectURL(file);
     const newPhoto = { id: Date.now(), src: url, color:"#fce7f3", label:`Photo ${Date.now()}` };
     
-    // Add photo to the selected week
+    // Keep only 4 photos in the selected week
     setEditableWeekPhotos(prev => ({
       ...prev,
-      [selectedUploadWeek]: [...(prev[selectedUploadWeek] || []), newPhoto]
+      [selectedUploadWeek]: [...(prev[selectedUploadWeek] || []).slice(0, 3), newPhoto]
     }));
     
     // Update current photos display if we're viewing that week
     if (photoWeeks[currentPhotoWeek] === selectedUploadWeek) {
-      setPhotos(prev => [...prev, newPhoto]);
+      setPhotos(prev => [...prev.slice(0, 3), newPhoto]);
     }
   };
 
@@ -298,7 +299,7 @@ export default function Blog() {
   // Update photos when active photo week changes
   React.useEffect(() => {
     const currentWeek = photoWeeks[currentPhotoWeek];
-    setPhotos(editableWeekPhotos[currentWeek] || []);
+    setPhotos(limitPhotos(editableWeekPhotos[currentWeek] || []));
   }, [currentPhotoWeek, editableWeekPhotos]);
 
   // Carousel helper functions
@@ -565,7 +566,7 @@ export default function Blog() {
         }
         .nav-arrow:hover{background:var(--pink);color:#fff;border-color:var(--pink);}
         .photo-grid{
-          display:grid;grid-template-columns:repeat(3,1fr);
+          display:grid;grid-template-columns:repeat(4,1fr);
           gap:18px;max-width:1000px;margin:0 auto;
         }
         .photo-card{
@@ -744,144 +745,134 @@ export default function Blog() {
         <div className="hero-content">
           <div className="hero-pill">✦ BSIT 4C Student</div>
           <h1 className="hero-name">Elaine Mae<br /><em>A. Bertiz</em></h1>
-          <p className="hero-sub">Lainey's Blog ✨</p>
-          <p className="hero-desc">A glimpse into my OJT journey, growth, and experiences at BU Cluster II. ✨</p>
+          <p className="hero-sub">On-the-Job Training Journey</p>
+          <p className="hero-desc">
+            A glimpse of my OJT journey, growth, and experiences at BU Cluster II. ✨
+          </p>
           <div className="hero-btns">
-            <button className="btn-main" onClick={()=>scrollTo("about")}>Meet Lainey 🌷</button>
-            <button className="btn-ghost" onClick={()=>scrollTo("weekly-blog")}>Read Blog →</button>
+            <button className="btn-main" onClick={()=>scrollTo("weekly-blog")}>Read My Blog</button>
+            <button className="btn-ghost" onClick={()=>scrollTo("photos")}>View Photos</button>
           </div>
         </div>
       </section>
-
-      {/* WAVE DIVIDER */}
-      <div className="wave-divider"></div>
 
       {/* ABOUT */}
       <section id="about" className="sec">
         <div className="about-grid">
           <div className="about-blob-wrap">
-            <div className="about-blob">🌸</div>
-            <div className="about-sticker">Hey there! 💕</div>
+            <div className="about-blob">👩‍💻</div>
+            <div className="about-sticker">Lainey ✨</div>
           </div>
-          <div>
-            <div className="sec-label">✦ About Me</div>
-            <h2 className="sec-title">I'm <span>Lainey!</span></h2>
-            <div className="about-text" style={{marginTop:0}}>
-              <p>As part of the Bachelor of Science in Information Technology program, I completed my On-the-Job Training at the Bicol University Cluster II Administrative Office located in A.P. Bonto Building, Legazpi City. During my internship, I was exposed to the actual working environment of an administrative office where I handled clerical and technical responsibilities.</p>
-              <p style={{marginTop:14}}>My tasks included handling incoming and outgoing documents, organizing office records, digitizing files, recording disbursement vouchers, and assisting in daily operations. I also conceptualized and developed the Cluster II Document Record Management System, a web-based system created to support document recording, tracking, and digital record management.</p>
-            </div>
-            <button className="btn-main" style={{marginTop:28}} onClick={()=>scrollTo("conclusion")}>How was Lainey's OJT?</button>
+          <div className="about-text">
+            <div className="sec-label">About Me</div>
+            <h2 className="sec-title">Simple Student with <span>Big Dreams</span></h2>
+            <p>
+              Hi! I am Elaine Mae A. Bertiz, a BS Information Technology student from Bicol University. This blog contains my weekly experiences, learnings, challenges, and memories during my On-the-Job Training at the Bicol University Cluster II Administrative Office.
+            </p>
+            <p>
+              Through this internship, I was able to experience both office work and system development. I learned how important patience, responsibility, communication, and teamwork are in a real working environment.
+            </p>
           </div>
         </div>
       </section>
 
       {/* WEEKLY BLOG */}
       <section id="weekly-blog" className="sec">
-        <div style={{textAlign:"center"}}>
-          <div className="sec-label" style={{margin:"0 auto 14px"}}>✦ Updates</div>
-          <h2 className="sec-title">Weekly <span>Blog</span></h2>
-          <p style={{color:"var(--muted)",marginTop:20,fontSize:".9rem"}}>Click a card to read more 💌</p>
+        <div style={{maxWidth:"1000px",margin:"0 auto",textAlign:"center"}}>
+          <div className="sec-label">Weekly Blog</div>
+          <h2 className="sec-title">My OJT <span>Journey</span></h2>
         </div>
-        
+
         <div className="blog-carousel-container">
-          <div className="blog-carousel" style={{
-            transform: `translateX(-${getScrollOffset(activeBlogWeek)}px)`
-          }}>
-            {Object.entries(weekBlogs).map(([week, data], idx) => (
-              <div 
-                className={`blog-card ${isCardActive(idx, activeBlogWeek) ? 'active' : ''}`}
-                key={week} 
-                onClick={()=>setBlogOpen(week)}
-                onMouseEnter={() => handleCardHover(idx)}
+          <div 
+            className="blog-carousel"
+            style={{transform:`translateX(-${getScrollOffset(activeBlogWeek)}px)`}}
+          >
+            {Object.entries(weekBlogs).map(([week, data], index)=>(
+              <div
+                key={week}
+                className={`blog-card ${isCardActive(index, activeBlogWeek) ? "active" : ""}`}
+                data-hovered={hoveredWeek === index}
+                onMouseEnter={()=>handleCardHover(index)}
                 onMouseLeave={handleCardLeave}
-                data-hovered={hoveredWeek === idx}
+                onClick={()=>{setActiveBlogWeek(index);setBlogOpen(week);}}
               >
-                <span className="blog-emoji">{data.emoji}</span>
+                <span className="blog-emoji">🌸</span>
                 <div className="blog-week">{week}</div>
-                <p className="blog-preview">{data.content}</p>
+                <p className="blog-preview">{data.title}</p>
                 <span className="blog-cta">Read More</span>
               </div>
             ))}
           </div>
         </div>
-        
+
         <div className="blog-nav">
-          <button 
-            className="blog-nav-btn" 
-            onClick={() => setActiveBlogWeek(getPreviousPage(activeBlogWeek))}
+          <button
+            className="blog-nav-btn"
             disabled={activeBlogWeek === 0}
-          >
-            ‹
-          </button>
+            onClick={()=>setActiveBlogWeek(getPreviousPage(activeBlogWeek))}
+          >‹</button>
           <div className="blog-week-indicators">
-            {Array.from({ length: Math.ceil(Object.keys(weekBlogs).length / 3) }, (_, i) => (
-              <div 
-                key={i}
-                className={`blog-dot ${Math.floor(activeBlogWeek / 3) === i ? 'active' : ''}`}
-                onClick={() => setActiveBlogWeek(i * 3)}
+            {Object.keys(weekBlogs).map((_, index)=>(
+              <span
+                key={index}
+                className={`blog-dot ${index === activeBlogWeek ? "active" : ""}`}
+                onClick={()=>setActiveBlogWeek(index)}
               />
             ))}
           </div>
-          <button 
-            className="blog-nav-btn" 
-            onClick={() => setActiveBlogWeek(getNextPage(activeBlogWeek))}
-            disabled={activeBlogWeek >= Object.keys(weekBlogs).length - 3}
-          >
-            ›
-          </button>
+          <button
+            className="blog-nav-btn"
+            disabled={activeBlogWeek === Object.keys(weekBlogs).length - 1}
+            onClick={()=>setActiveBlogWeek(getNextPage(activeBlogWeek))}
+          >›</button>
         </div>
       </section>
 
-      {/* BLOG MODAL */}
       {blogOpen && (
         <div className="overlay" onClick={()=>setBlogOpen(null)}>
           <div className="modal" onClick={e=>e.stopPropagation()}>
-            <button className="modal-x" onClick={()=>setBlogOpen(null)}>✕</button>
+            <button className="modal-x" onClick={()=>setBlogOpen(null)}>×</button>
             <span className="modal-emoji">🌸</span>
-            <div className="modal-title">{blogOpen}: {weekBlogs[blogOpen].title}</div>
+            <h3 className="modal-title">{blogOpen}: {weekBlogs[blogOpen].title}</h3>
             <p className="modal-body">{weekBlogs[blogOpen].content}</p>
           </div>
         </div>
       )}
 
+      <div className="wave-divider" />
+
       {/* PHOTOS */}
       <section id="photos" className="sec">
         <div className="photos-top">
           <div>
-            <div className="sec-label">✦ Gallery</div>
-            <h2 className="sec-title">Photo <span>Diary</span></h2>
+            <div className="sec-label">Photos</div>
+            <h2 className="sec-title">Photo <span>Memories</span></h2>
           </div>
-          <button className="upload-lbl" onClick={() => setPasswordModalOpen(true)}>
-            + Add Photo
-          </button>
+          <button className="upload-lbl" onClick={()=>setPasswordModalOpen(true)}>Upload Photo</button>
         </div>
 
         <div className="week-tabs">
-          <button 
-            className="nav-arrow" 
-            onClick={() => setButtonGroupStart(Math.max(0, buttonGroupStart - 5))}
-            style={{opacity: buttonGroupStart === 0 ? 0.3 : 1}}
-            disabled={buttonGroupStart === 0}
-          >‹</button>
-          {photoWeeks.slice(buttonGroupStart, buttonGroupStart + 5).map((w,i)=>(
-            <button key={w} className={`w-tab ${currentPhotoWeek===buttonGroupStart+i?'on':''}`} onClick={()=>setCurrentPhotoWeek(buttonGroupStart+i)}>
-              {w}
-            </button>
+          <button className="nav-arrow" onClick={()=>setButtonGroupStart(Math.max(0, buttonGroupStart - 7))}>‹</button>
+          {photoWeeks.slice(buttonGroupStart, buttonGroupStart + 7).map((week, i)=>(
+            <button
+              key={week}
+              className={`w-tab ${currentPhotoWeek === buttonGroupStart + i ? "on" : ""}`}
+              onClick={()=>setCurrentPhotoWeek(buttonGroupStart + i)}
+            >{week}</button>
           ))}
-          <button 
-            className="nav-arrow" 
-            onClick={() => setButtonGroupStart(Math.min(photoWeeks.length - 5, buttonGroupStart + 5))}
-            style={{opacity: buttonGroupStart >= photoWeeks.length - 5 ? 0.3 : 1}}
-            disabled={buttonGroupStart >= photoWeeks.length - 5}
-          >›</button>
+          <button className="nav-arrow" onClick={()=>setButtonGroupStart(Math.min(photoWeeks.length - 7, buttonGroupStart + 7))}>›</button>
         </div>
 
         <div className="photo-grid">
-          {photos.map((p,i)=>(
-            <div className="photo-card" key={p.id || i}>
-              {p.src ? <img src={p.src} alt={p.label || `Photo ${i+1}`} /> : (
-                <div className="photo-ph" style={{background:p.color || placeholderColors[i%placeholderColors.length]}}>
-                  🌸<small>Upload Photo</small>
+          {photos.map((photo, index)=>(
+            <div className="photo-card" key={photo.id || index}>
+              {photo.src ? (
+                <img src={photo.src} alt={photo.label || `Photo ${index + 1}`} />
+              ) : (
+                <div className="photo-ph" style={{background:photo.color || placeholderColors[index % placeholderColors.length]}}>
+                  📷
+                  <small>{photo.label || "Photo"}</small>
                 </div>
               )}
             </div>
@@ -891,341 +882,99 @@ export default function Blog() {
 
       {/* PASSWORD MODAL */}
       {passwordModalOpen && (
-        <div className="overlay" onClick={() => setPasswordModalOpen(false)}>
-          <div className="modal" onClick={e => e.stopPropagation()}>
-            <button className="modal-x" onClick={() => setPasswordModalOpen(false)}>✕</button>
+        <div className="overlay" onClick={()=>setPasswordModalOpen(false)}>
+          <div className="modal" style={{maxWidth:"420px"}} onClick={e=>e.stopPropagation()}>
+            <button className="modal-x" onClick={()=>setPasswordModalOpen(false)}>×</button>
             <span className="modal-emoji">🔐</span>
-            <div className="modal-title">Enter Password</div>
-            <p style={{color: "var(--muted)", textAlign: "center", margin: "16px 0"}}>
-              Please enter password to access photo upload
-            </p>
-            <div style={{margin: "20px 0"}}>
-              <input 
-                type="password" 
-                placeholder="Enter password..."
-                style={{
-                  width: "100%",
-                  padding: "14px 18px",
-                  border: "2px solid var(--pink-m)",
-                  borderRadius: "12px",
-                  fontSize: "16px",
-                  outline: "none",
-                  fontFamily: "'DM Sans', sans-serif"
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    handlePasswordSubmit(e.target.value);
-                  }
-                }}
-                autoFocus
-              />
-              {passwordError && (
-                <p style={{color: "#ef4444", fontSize: "14px", marginTop: "8px", textAlign: "center"}}>
-                  {passwordError}
-                </p>
-              )}
-            </div>
-            <div style={{display: "flex", gap: "12px", justifyContent: "center"}}>
-              <button 
-                className="btn-main" 
-                onClick={() => {
-                  const input = document.querySelector('input[type="password"]');
-                  handlePasswordSubmit(input.value);
-                }}
-              >
-                Submit
-              </button>
-              <button 
-                className="btn-ghost" 
-                onClick={() => setPasswordModalOpen(false)}
-              >
-                Cancel
-              </button>
-            </div>
+            <h3 className="modal-title">Enter Password</h3>
+            <p className="modal-body" style={{textAlign:"left"}}>Please enter the password before uploading a photo.</p>
+            <input
+              type="password"
+              placeholder="Password"
+              onKeyDown={(e)=>{
+                if(e.key === "Enter") handlePasswordSubmit(e.target.value);
+              }}
+              style={{
+                width:"100%",padding:"12px 16px",border:"2px solid var(--pink-m)",borderRadius:"14px",
+                marginTop:"16px",fontFamily:"DM Sans",outline:"none"
+              }}
+            />
+            {passwordError && <p style={{color:"#ef4444",fontSize:".85rem",marginTop:"10px"}}>{passwordError}</p>}
+            <button
+              className="btn-main"
+              style={{marginTop:"18px",width:"100%"}}
+              onClick={()=>{
+                const input = document.querySelector('input[type="password"]');
+                handlePasswordSubmit(input.value);
+              }}
+            >Submit</button>
           </div>
         </div>
       )}
 
       {/* UPLOAD MODAL */}
       {uploadModalOpen && (
-        <div className="overlay" onClick={() => setUploadModalOpen(false)}>
-          <div className="modal" onClick={e => e.stopPropagation()}>
-            <button className="modal-x" onClick={() => setUploadModalOpen(false)}>✕</button>
+        <div className="overlay" onClick={()=>setUploadModalOpen(false)}>
+          <div className="modal" style={{maxWidth:"500px"}} onClick={e=>e.stopPropagation()}>
+            <button className="modal-x" onClick={()=>setUploadModalOpen(false)}>×</button>
             <span className="modal-emoji">📷</span>
-            <div className="modal-title">Upload Photo</div>
-            
-            {/* Week Selection */}
-            <div style={{margin: "20px 0"}}>
-              <p style={{color: "var(--muted)", textAlign: "center", margin: "0 0 12px 0", fontSize: "14px"}}>
-                Select week to upload photo:
-              </p>
-              <div style={{display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "8px"}}>
-                {photoWeeks.map((week) => (
-                  <button
-                    key={week}
-                    onClick={() => setSelectedUploadWeek(week)}
-                    style={{
-                      padding: "8px 12px",
-                      border: selectedUploadWeek === week ? "2px solid var(--pink)" : "2px solid var(--pink-m)",
-                      borderRadius: "12px",
-                      background: selectedUploadWeek === week ? "var(--pink)" : "#fff",
-                      color: selectedUploadWeek === week ? "#fff" : "var(--muted)",
-                      fontSize: "12px",
-                      cursor: "pointer",
-                      transition: "all 0.2s"
-                    }}
-                  >
-                    {week}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="upload-area" style={{
-              border: "2px dashed var(--pink-m)",
-              borderRadius: "16px",
-              padding: "40px 20px",
-              textAlign: "center",
-              background: "var(--pink-l)",
-              margin: "20px 0",
-              cursor: "pointer",
-              transition: "all 0.3s ease"
-            }}>
-              <input 
-                id="modal-photo-upload" 
-                type="file" 
-                accept="image/*" 
-                style={{display:"none"}} 
-                onChange={(e) => {
-                  handleUpload(e);
-                  setUploadModalOpen(false);
-                }}
-              />
-              <label htmlFor="modal-photo-upload" style={{cursor: "pointer", display: "block"}}>
-                <div style={{fontSize: "48px", marginBottom: "16px"}}>📸</div>
-                <p style={{margin: "0 0 8px 0", color: "var(--muted)", fontSize: "16px"}}>
-                  Click to browse or drag and drop
-                </p>
-                <p style={{margin: 0, color: "var(--pink)", fontSize: "14px", fontWeight: "500"}}>
-                  Supports: JPG, PNG, GIF, WebP
-                </p>
-              </label>
-            </div>
-            <div style={{display: "flex", gap: "12px", justifyContent: "center", marginTop: "24px"}}>
-              <button 
-                className="btn-main" 
-                onClick={() => document.getElementById('modal-photo-upload').click()}
-              >
-                Choose File
-              </button>
-              <button 
-                className="btn-ghost" 
-                onClick={() => setUploadModalOpen(false)}
-              >
-                Cancel
-              </button>
-            </div>
+            <h3 className="modal-title">Upload Photo</h3>
+            <p className="modal-body" style={{textAlign:"left"}}>Choose which week you want to add the photo to.</p>
+            <select
+              value={selectedUploadWeek}
+              onChange={(e)=>setSelectedUploadWeek(e.target.value)}
+              style={{
+                width:"100%",padding:"12px 16px",border:"2px solid var(--pink-m)",borderRadius:"14px",
+                marginTop:"16px",fontFamily:"DM Sans",outline:"none",background:"#fff"
+              }}
+            >
+              {photoWeeks.map(week=><option key={week} value={week}>{week}</option>)}
+            </select>
+            <label className="upload-lbl" style={{marginTop:"18px",justifyContent:"center"}}>
+              Select Photo
+              <input type="file" accept="image/*" onChange={handleUpload} style={{display:"none"}} />
+            </label>
           </div>
         </div>
       )}
 
       {/* VIDEOS */}
       <section id="videos" className="sec">
-        <div style={{textAlign:"center"}}>
-          <div className="sec-label" style={{margin:"0 auto 14px"}}>✦ Learning</div>
-          <h2 className="sec-title">What I've learned in <span>BU Cluster II</span></h2>
+        <div style={{maxWidth:"1000px",margin:"0 auto",textAlign:"center"}}>
+          <div className="sec-label">My Experience</div>
+          <h2 className="sec-title">OJT <span>Highlights</span></h2>
         </div>
-        <div style={{maxWidth:"800px", margin:"40px auto"}}>
-          <p style={{fontSize:"1rem", lineHeight:"1.8", color:"var(--muted)", textAlign:"justify"}}>
-            My internship at BU Cluster II helped me grow in both technical and professional aspects. I learned how to handle office documents properly, organize records, digitize files, and understand the flow of administrative transactions. I also improved my skills in designing interfaces, developing system features, connecting databases, testing functions, and solving technical problems. More than the technical skills, this experience taught me responsibility, patience, communication, time management, and confidence in working with others.
-          </p>
+        <div className="vid-grid">
+          {[1,2,3].map((v)=>(
+            <div className="vid-card" key={v}>
+              <video controls>
+                <source src="" type="video/mp4" />
+              </video>
+              <div className="vid-label">Video {v}</div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* WAVE DIVIDER */}
-      <div className="wave-divider-videos"></div>
+      <div className="wave-divider-videos" />
 
-      {/* CONCLUSION */}
-      <section id="conclusion" className="sec" style={{background:"#fff"}}>
-        <div className="about-grid">
-          <div className="about-blob-wrap">
-            <div className="about-sticker">Internship Journey!</div>
-            <div style={{marginTop:20, position:"relative", display:"inline-block"}}>
-              {/* Cute side decorations */}
-              <div style={{
-                position:"absolute",
-                top:"-15px",
-                left:"-25px",
-                fontSize:"18px",
-                zIndex:3,
-                animation:"floatUp 4s ease-in-out infinite"
-              }}>🌷</div>
-              <div style={{
-                position:"absolute",
-                top:"-10px",
-                right:"-20px",
-                fontSize:"16px",
-                zIndex:3,
-                animation:"floatUp 4s ease-in-out 1s infinite"
-              }}>🦋</div>
-              <div style={{
-                position:"absolute",
-                bottom:"-15px",
-                left:"-20px",
-                fontSize:"17px",
-                zIndex:3,
-                animation:"floatUp 4s ease-in-out 2s infinite"
-              }}>🌺</div>
-              <div style={{
-                position:"absolute",
-                bottom:"-10px",
-                right:"-25px",
-                fontSize:"15px",
-                zIndex:3,
-                animation:"floatUp 4s ease-in-out 3s infinite"
-              }}>🌼</div>
-              
-              {/* Floating sparkles */}
-              <div style={{
-                position:"absolute",
-                top:"20px",
-                left:"-30px",
-                fontSize:"12px",
-                zIndex:3,
-                animation:"twinkle 2s ease-in-out infinite"
-              }}>✨</div>
-              <div style={{
-                position:"absolute",
-                top:"40px",
-                right:"-35px",
-                fontSize:"10px",
-                zIndex:3,
-                animation:"twinkle 2s ease-in-out 0.5s infinite"
-              }}>✨</div>
-              <div style={{
-                position:"absolute",
-                bottom:"30px",
-                left:"-35px",
-                fontSize:"11px",
-                zIndex:3,
-                animation:"twinkle 2s ease-in-out 1s infinite"
-              }}>⭐</div>
-              <div style={{
-                position:"absolute",
-                bottom:"20px",
-                right:"-30px",
-                fontSize:"13px",
-                zIndex:3,
-                animation:"twinkle 2s ease-in-out 1.5s infinite"
-              }}>🌟</div>
-              
-              {/* Cute ribbon bows */}
-              <div style={{
-                position:"absolute",
-                top:"50%",
-                left:"-45px",
-                transform:"translateY(-50%)",
-                width:"40px",
-                height:"40px",
-                zIndex:2,
-                fontSize:"24px",
-                animation:"morph 6s ease-in-out infinite"
-              }}>🎀</div>
-              <div style={{
-                position:"absolute",
-                top:"50%",
-                right:"-45px",
-                transform:"translateY(-50%)",
-                width:"40px",
-                height:"40px",
-                zIndex:2,
-                fontSize:"24px",
-                animation:"morph 6s ease-in-out 2s infinite"
-              }}>🎀</div>
-              
-              {/* Soft pastel blobs */}
-              <div style={{
-                position:"absolute",
-                top:"-20px",
-                left:"-20px",
-                right:"-20px",
-                bottom:"-20px",
-                borderRadius:"70% 30% 60% 40%/40% 60% 30% 70%",
-                background:"linear-gradient(135deg, #ffe0f0 0%, #ffc0e0 25%, #ffb6c1 50%, #ffa0c0 75%, #ff80a0 100%)",
-                opacity:0.4,
-                zIndex:0,
-                animation:"morph 10s ease-in-out infinite"
-              }}></div>
-              
-              {/* Additional soft blob */}
-              <div style={{
-                position:"absolute",
-                top:"10px",
-                right:"-15px",
-                width:"80px",
-                height:"80px",
-                borderRadius:"60% 40% 50% 50%/50% 60% 40% 60%",
-                background:"linear-gradient(135deg, #ffe0f0, #ffb6c1)",
-                opacity:0.3,
-                zIndex:0,
-                animation:"morph 8s ease-in-out 1.5s infinite"
-              }}></div>
-              
-              {/* Bottom accent blob */}
-              <div style={{
-                position:"absolute",
-                bottom:"10px",
-                left:"-15px",
-                width:"70px",
-                height:"70px",
-                borderRadius:"50% 50% 60% 40%/40% 60% 40% 60%",
-                background:"linear-gradient(135deg, #ffc0e0, #ffa0c0)",
-                opacity:0.35,
-                zIndex:0,
-                animation:"morph 7s ease-in-out 2.5s infinite"
-              }}></div>
-              
-              {/* Main image with cute frame */}
-              <div style={{
-                position:"relative",
-                zIndex:1,
-                padding:"8px",
-                background:"linear-gradient(135deg, #fff0f5, #ffe0f0)",
-                borderRadius:"25px",
-                display:"inline-block",
-                border: "3px solid #ffb6c1",
-                boxShadow: "0 8px 32px rgba(255,182,193,0.2)"
-              }}>
-                <img 
-                  src="/images/Lainey_Student_Unif.jpg" 
-                  alt="Lainey in Student Uniform" 
-                  style={{
-                    width: "100%",
-                    maxWidth: "240px",
-                    height: "auto",
-                    borderRadius:"40% 60% 60% 40% / 40% 40% 60% 60%",
-                    display: "block",
-                    objectFit: "cover",
-                    aspectRatio: "3/4",
-                    border: "2px solid #fff"
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-          <div>
-            <div className="sec-label">✦ Experience</div>
-            <h2 className="sec-title">Lainey's <span>Internship Chronicles</span></h2>
-            <div className="about-text" style={{marginTop:0}}>
-              <p>My internship at the Bicol University Cluster II Administrative Office became a meaningful part of my academic journey as an Information Technology student. Throughout my 486 hours of training, I was able to experience both clerical and technical responsibilities, from managing documents and organizing records to developing the Cluster II Document Record Management System.</p>
-              <p style={{marginTop:14}}>This experience helped me become more confident, responsible, flexible, and resourceful. It showed me that I can handle multiple responsibilities, solve problems independently, and continue learning even when faced with challenges.</p>
-            </div>
-            <div className="hero-btns" style={{marginTop:28}}>
+      {/* EXPERIENCE / CONCLUSION */}
+      <section className="sec" style={{background:"#fff"}}>
+        <div style={{maxWidth:"900px",margin:"0 auto"}}>
+          <div className="sec-label">Conclusion</div>
+          <h2 className="sec-title">My Internship <span>Reflection</span></h2>
+          <div className="about-text">
+            <p>
+              My internship at the Bicol University Cluster II Administrative Office became a meaningful part of my academic journey as an Information Technology student. Throughout my 486 hours of training, I was able to experience both clerical and technical responsibilities, from managing documents and organizing records to developing the Cluster II Document Record Management System.
+            </p>
+            <p>
+              This experience helped me become more confident, responsible, flexible, and prepared for future professional opportunities. I am thankful for all the people who guided me, trusted me, and made my OJT journey memorable.
+            </p>
+            <div className="hero-btns">
               <button
-  className="btn-ghost"
+  className="btn-main"
   onClick={() =>
-    window.location.href =
-      "mailto:elainebertiz258@gmail.com?subject=Hello%20Elaine&body=Hi%20Elaine,%0A%0A"
+    window.location.href = "mailto:elainebertiz258@gmail.com?subject=Inquiry%20from%20Lainey's%20Blog&body=Hi%20Elaine,%0A%0A"
   }
 >
   Contact Me 💌
