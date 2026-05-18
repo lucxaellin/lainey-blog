@@ -233,10 +233,86 @@ const weekPhotos = {
       label: "Week 10 Photo 3 📸"
     }
   ],
-  "Week 11": [],
-  "Week 12": [],
-  "Week 13": [],
-  "Week 14": []
+  "Week 11": [
+    {
+      id: 29,
+      src: "/images/week11.JPG",
+      color: "#dbeafe",
+      label: "Week 11 Photo 1 📸"
+    },
+    {
+      id: 30,
+      src: "/images/week11-1.JPG",
+      color: "#ede9fe",
+      label: "Week 11 Photo 2 📸"
+    },
+    {
+      id: 31,
+      src: "/images/week11-2.JPG",
+      color: "#fce7f3",
+      label: "Week 11 Photo 3 📸"
+    }
+  ],
+  "Week 12": [
+        {
+      id: 32,
+      src: "/images/week12.JPG",
+      color: "#dbeafe",
+      label: "Week 12 Photo 1 📸"
+    },
+    {
+      id: 33,
+      src: "/images/week12-1.JPG",
+      color: "#ede9fe",
+      label: "Week 12 Photo 2 📸"
+    },
+    {
+      id: 34,
+      src: "/images/week12-2.JPG",
+      color: "#fce7f3",
+      label: "Week 12 Photo 3 📸"
+    }
+  ],
+  "Week 13": [
+            {
+      id: 35,
+      src: "/images/week13.JPG",
+      color: "#dbeafe",
+      label: "Week 13 Photo 1 📸"
+    },
+    {
+      id: 36,
+      src: "/images/week13-1.JPG",
+      color: "#ede9fe",
+      label: "Week 13 Photo 2 📸"
+    },
+    {
+      id: 37,
+      src: "/images/week13-2.JPG",
+      color: "#fce7f3",
+      label: "Week 13 Photo 3 📸"
+    }
+  ],
+  "Week 14": [
+            {
+      id: 38,
+      src: "/images/week14.JPG",
+      color: "#dbeafe",
+      label: "Week 14 Photo 1 📸"
+    },
+    {
+      id: 39,
+      src: "/images/week14-1.JPG",
+      color: "#ede9fe",
+      label: "Week 14 Photo 2 📸"
+    },
+    {
+      id: 40,
+      src: "/images/week14-2.JPG",
+      color: "#fce7f3",
+      label: "Week 14 Photo 3 📸"
+    }
+  ]
 };
 
 const initialWeekPhotos = Object.fromEntries(
