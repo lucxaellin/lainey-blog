@@ -133,11 +133,106 @@ const weekPhotos = {
       label: "Week 5 Photo 3 📸"
     }
   ],
-  "Week 6": [],
-  "Week 7": [],
-  "Week 8": [],
-  "Week 9": [],
-  "Week 10": [],
+  "Week 6": [
+    {
+      id: 14,
+      src: "/images/week6.JPG",
+      color: "#dbeafe",
+      label: "Week 6 Photo 1 📸"
+    },
+    {
+      id: 15,
+      src: "/images/week6-1.JPG",
+      color: "#ede9fe",
+      label: "Week 6 Photo 2 📸"
+    },
+    {
+      id: 16,
+      src: "/images/week6-2.JPG",
+      color: "#fce7f3",
+      label: "Week 6 Photo 3 📸"
+    }
+  ],
+  "Week 7": [
+    {
+      id: 17,
+      src: "/images/week7.JPG",
+      color: "#dbeafe",
+      label: "Week 7 Photo 1 📸"
+    },
+    {
+      id: 18,
+      src: "/images/week7-1.JPG",
+      color: "#ede9fe",
+      label: "Week 7 Photo 2 📸"
+    },
+    {
+      id: 19,
+      src: "/images/week7-2.JPG",
+      color: "#fce7f3",
+      label: "Week 7 Photo 3 📸"
+    }
+  ],
+  "Week 8": [
+    {
+      id: 20,
+      src: "/images/week8.JPG",
+      color: "#dbeafe",
+      label: "Week 8 Photo 1 📸"
+    },
+    {
+      id: 21,
+      src: "/images/week8-1.JPG",
+      color: "#ede9fe",
+      label: "Week 8 Photo 2 📸"
+    },
+    {
+      id: 22,
+      src: "/images/week8-2.JPG",
+      color: "#fce7f3",
+      label: "Week 8 Photo 3 📸"
+    }
+  ],
+  "Week 9": [
+    {
+      id: 23,
+      src: "/images/week9.JPG",
+      color: "#dbeafe",
+      label: "Week 9 Photo 1 📸"
+    },
+    {
+      id: 24,
+      src: "/images/week9-1.JPG",
+      color: "#ede9fe",
+      label: "Week 9 Photo 2 📸"
+    },
+    {
+      id: 25,
+      src: "/images/week9-2.JPG",
+      color: "#fce7f3",
+      label: "Week 9 Photo 3 📸"
+    }
+  ],
+  "Week 10": [
+    {
+      id: 26,
+      src: "/images/week10.JPG",
+      color: "#dbeafe",
+      label: "Week 10 Photo 1 📸"
+    },
+    {
+      id: 27,
+      src: "/images/week10-1.JPG",
+      color: "#ede9fe",
+      label: "Week 10 Photo 2 📸"
+    },
+    {
+      id: 28,
+      src: "/images/week10-2.JPG",
+      color: "#fce7f3",
+      label: "Week 10 Photo 3 📸"
+    }
+  ],
   "Week 11": [],
   "Week 12": [],
   "Week 13": [],
