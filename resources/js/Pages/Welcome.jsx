@@ -153,6 +153,22 @@ const weekPhotos = {
     { id:71, src:"https://picsum.photos/seed/week12-5/300/300.jpg", color:"#fce7f3", label:"Deployment 🚀" },
     { id:72, src:"https://picsum.photos/seed/week12-6/300/300.jpg", color:"#fef3c7", label:"Success & Future 🌟"},
   ],
+  "Week 13": [
+    { id:61, src:"https://picsum.photos/seed/week11-1/300/300.jpg", color:"#fce7f3", label:"API Integration 📊" },
+    { id:62, src:"https://picsum.photos/seed/week11-2/300/300.jpg", color:"#fef3c7", label:"External APIs 🌐" },
+    { id:63, src:"https://picsum.photos/seed/week11-3/300/300.jpg", color:"#d1fae5", label:"Async Data ⚡" },
+    { id:64, src:"https://picsum.photos/seed/week11-4/300/300.jpg", color:"#dbeafe", label:"Error Handling ⚠️" },
+    { id:65, src:"https://picsum.photos/seed/week11-5/300/300.jpg", color:"#ede9fe", label:"Real-world Apps 🏢" },
+    { id:66, src:"https://picsum.photos/seed/week11-6/300/300.jpg", color:"#fce7f3", label:"Service Communication 📡" },
+  ],
+  "Week 14": [
+    { id:67, src:"https://picsum.photos/seed/week12-1/300/300.jpg", color:"#fef3c7", label:"Final Project 🎓" },
+    { id:68, src:"https://picsum.photos/seed/week12-2/300/300.jpg", color:"#d1fae5", label:"Frontend 🎨" },
+    { id:69, src:"https://picsum.photos/seed/week12-3/300/300.jpg", color:"#dbeafe", label:"Backend 🔧" },
+    { id:70, src:"https://picsum.photos/seed/week12-4/300/300.jpg", color:"#ede9fe", label:"Database 🗄️" },
+    { id:71, src:"https://picsum.photos/seed/week12-5/300/300.jpg", color:"#fce7f3", label:"Deployment 🚀" },
+    { id:72, src:"https://picsum.photos/seed/week12-6/300/300.jpg", color:"#fef3c7", label:"Success & Future 🌟"},
+  ],
 };
 
 export default function Blog() {
@@ -257,6 +273,22 @@ export default function Blog() {
       { id:66, src:"https://picsum.photos/seed/week11-6/300/300.jpg", color:"#fce7f3", label:"SEO 🔍" },
     ],
     "Week 12": [
+      { id:67, src:"https://picsum.photos/seed/week12-1/300/300.jpg", color:"#fef3c7", label:"Portfolio 🎨" },
+      { id:68, src:"https://picsum.photos/seed/week12-2/300/300.jpg", color:"#d1fae5", label:"Final Project 🎯" },
+      { id:69, src:"https://picsum.photos/seed/week12-3/300/300.jpg", color:"#dbeafe", label:"Presentation 📊" },
+      { id:70, src:"https://picsum.photos/seed/week12-4/300/300.jpg", color:"#ede9fe", label:"Demo 🎬" },
+      { id:71, src:"https://picsum.photos/seed/week12-5/300/300.jpg", color:"#fce7f3", label:"Certificate 🏆" },
+      { id:72, src:"https://picsum.photos/seed/week12-6/300/300.jpg", color:"#fef3c7", label:"Celebration 🎉" },
+    ],
+    "Week 13": [
+      { id:67, src:"https://picsum.photos/seed/week12-1/300/300.jpg", color:"#fef3c7", label:"Portfolio 🎨" },
+      { id:68, src:"https://picsum.photos/seed/week12-2/300/300.jpg", color:"#d1fae5", label:"Final Project 🎯" },
+      { id:69, src:"https://picsum.photos/seed/week12-3/300/300.jpg", color:"#dbeafe", label:"Presentation 📊" },
+      { id:70, src:"https://picsum.photos/seed/week12-4/300/300.jpg", color:"#ede9fe", label:"Demo 🎬" },
+      { id:71, src:"https://picsum.photos/seed/week12-5/300/300.jpg", color:"#fce7f3", label:"Certificate 🏆" },
+      { id:72, src:"https://picsum.photos/seed/week12-6/300/300.jpg", color:"#fef3c7", label:"Celebration 🎉" },
+    ],
+    "Week 14": [
       { id:67, src:"https://picsum.photos/seed/week12-1/300/300.jpg", color:"#fef3c7", label:"Portfolio 🎨" },
       { id:68, src:"https://picsum.photos/seed/week12-2/300/300.jpg", color:"#d1fae5", label:"Final Project 🎯" },
       { id:69, src:"https://picsum.photos/seed/week12-3/300/300.jpg", color:"#dbeafe", label:"Presentation 📊" },
