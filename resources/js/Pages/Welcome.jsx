@@ -30,7 +30,62 @@ const weekBlogs = {"Week 1": { title:"Orientation to Bicol University Cluster II
 const photoWeeks = ["Week 1","Week 2","Week 3","Week 4","Week 5","Week 6","Week 7","Week 8","Week 9","Week 10","Week 11","Week 12","Week 13","Week 14"];const placeholderColors = ["#fce7f3","#fef3c7","#d1fae5","#dbeafe","#ede9fe","#fce7f3","#fef3c7","#d1fae5","#dbeafe","#ede9fe","#fce7f3","#fef3c7"];
 
 // Different photos for each week
-const weekPhotos = {"Week 1": [{ id:1, src:"https://picsum.photos/seed/week1-1/300/300.jpg", color:"#fce7f3", label:"Setup Day 🖥️" },{ id:2, src:"https://picsum.photos/seed/week1-2/300/300.jpg", color:"#fef3c7", label:"First Code 💻" },{ id:3, src:"https://picsum.photos/seed/week1-3/300/300.jpg", color:"#d1fae5", label:"Learning 📚" },{ id:4, src:"https://picsum.photos/seed/week1-4/300/300.jpg", color:"#dbeafe", label:"Environment 🌱" },{ id:5, src:"https://picsum.photos/seed/week1-5/300/300.jpg", color:"#ede9fe", label:"Tools 🔧" },{ id:6, src:"https://picsum.photos/seed/week1-6/300/300.jpg", color:"#fce7f3", label:"Progress 📈" },],"Week 13": [{ id:13, src:"https://picsum.photos/seed/week13-1/300/300.jpg", color:"#e0f2fe", label:"Advanced Patterns 🎯" },{ id:14, src:"https://picsum.photos/seed/week13-2/300/300.jpg", color:"#fbbf24", label:"Architecture 🏗️" },{ id:15, src:"https://picsum.photos/seed/week13-3/300/300.jpg", color:"#fef3c7", label:"Performance ⚡" },{ id:16, src:"https://picsum.photos/seed/week13-4/300/300.jpg", color:"#dbeafe", label:"Optimization 🔧" },{ id:17, src:"https://picsum.photos/seed/week13-5/300/300.jpg", color:"#ede9fe", label:"Best Practices 📋" },{ id:18, src:"https://picsum.photos/seed/week13-6/300/300.jpg", color:"#fce7f3", label:"Code Quality 🏆" },],"Week 14": [{ id:19, src:"https://picsum.photos/seed/week14-1/300/300.jpg", color:"#f0abfc", label:"Full Stack 🚀" },{ id:20, src:"https://picsum.photos/seed/week14-2/300/300.jpg", color:"#dbeafe", label:"DevOps 🛠️" },{ id:21, src:"https://picsum.photos/seed/week14-3/300/300.jpg", color:"#fef3c7", label:"Deployment 🌐" },{ id:22, src:"https://picsum.photos/seed/week14-4/300/300.jpg", color:"#fbbf24", label:"Production 🏭️" },{ id:23, src:"https://picsum.photos/seed/week14-5/300/300.jpg", color:"#e0f2fe", label:"Monitoring 📊" },{ id:24, src:"https://picsum.photos/seed/week14-6/300/300.jpg", color:"#fce7f3", label:"Success 🎉" },],"Week 2": [{ id:7, src:"https://picsum.photos/seed/week2-1/300/300.jpg", color:"#fef3c7", label:"CSS Magic 🎨" },{ id:8, src:"https://picsum.photos/seed/week2-2/300/300.jpg", color:"#d1fae5", label:"Flexbox 📦" },{ id:9, src:"https://picsum.photos/seed/week2-3/300/300.jpg", color:"#dbeafe", label:"Grid Layout 📐" },{ id:10, src:"https://picsum.photos/seed/week2-4/300/300.jpg", color:"#ede9fe", label:"Styling ✨" },{ id:11, src:"https://picsum.photos/seed/week2-5/300/300.jpg", color:"#fce7f3", label:"Design 🎭" },{ id:12, src:"https://picsum.photos/seed/week2-6/300/300.jpg", color:"#fef3c7", label:"Colors 🌈" },],"Week 3": [{ id:13, src:"https://picsum.photos/seed/week3-1/300/300.jpg", color:"#d1fae5", label:"JavaScript 🟨" },{ id:14, src:"https://picsum.photos/seed/week3-2/300/300.jpg", color:"#dbeafe", label:"Functions ⚡" },{ id:15, src:"https://picsum.photos/seed/week3-3/300/300.jpg", color:"#ede9fe", label:"Arrays 📋" },{ id:16, src:"https://picsum.photos/seed/week3-4/300/300.jpg", color:"#fce7f3", label:"Logic 🧠" },{ id:17, src:"https://picsum.photos/seed/week3-5/300/300.jpg", color:"#fef3c7", label:"Loops 🔄" },{ id:18, src:"https://picsum.photos/seed/week3-6/300/300.jpg", color:"#d1fae5", label:"Debugging 🐛" },],"Week 4": [{ id:19, src:"https://picsum.photos/seed/week4-1/300/300.jpg", color:"#dbeafe", label:"React ⚛️" },{ id:20, src:"https://picsum.photos/seed/week4-2/300/300.jpg", color:"#ede9fe", label:"Hooks 🪝" },{ id:21, src:"https://picsum.photos/seed/week4-3/300/300.jpg", color:"#fce7f3", label:"Components 🧩" },{ id:22, src:"https://picsum.photos/seed/week4-4/300/300.jpg", color:"#fef3c7", label:"State 📊" },{ id:23, src:"https://picsum.photos/seed/week4-5/300/300.jpg", color:"#d1fae5", label:"Props 📦" },{ id:24, src:"https://picsum.photos/seed/week4-6/300/300.jpg", color:"#dbeafe", label:"Interactive 🎯" },],"Week 5": [{ id:25, src:"https://picsum.photos/seed/week5-1/300/300.jpg", color:"#ede9fe", label:"Mobile 📱" },{ id:26, src:"https://picsum.photos/seed/week5-2/300/300.jpg", color:"#fce7f3", label:"Responsive 📐" },{ id:27, src:"https://picsum.photos/seed/week5-3/300/300.jpg", color:"#fef3c7", label:"Tablet 📲" },{ id:28, src:"https://picsum.photos/seed/week5-4/300/300.jpg", color:"#d1fae5", label:"Desktop 💻" },{ id:29, src:"https://picsum.photos/seed/week5-5/300/300.jpg", color:"#dbeafe", label:"Media Query 📱" },{ id:30, src:"https://picsum.photos/seed/week5-6/300/300.jpg", color:"#ede9fe", label:"Layout 🎨" },],"Week 6": [{ id:31, src:"https://picsum.photos/seed/week6-1/300/300.jpg", color:"#fce7f3", label:"Debugging 🔧" },{ id:32, src:"https://picsum.photos/seed/week6-2/300/300.jpg", color:"#fef3c7", label:"Performance ⚡" },{ id:33, src:"https://picsum.photos/seed/week6-3/300/300.jpg", color:"#d1fae5", label:"Optimization 🚀" },{ id:34, src:"https://picsum.photos/seed/week6-4/300/300.jpg", color:"#dbeafe", label:"Clean Code 🧹" },{ id:35, src:"https://picsum.photos/seed/week6-5/300/300.jpg", color:"#ede9fe", label:"Tools 🛠️" },{ id:36, src:"https://picsum.photos/seed/week6-6/300/300.jpg", color:"#fce7f3", label:"Success 🎉" },],"Week 7": [{ id:37, src:"https://picsum.photos/seed/week7-1/300/300.jpg", color:"#fef3c7", label:"Animations ✨" },{ id:38, src:"https://picsum.photos/seed/week7-2/300/300.jpg", color:"#d1fae5", label:"Transitions 🎭" },{ id:39, src:"https://picsum.photos/seed/week7-3/300/300.jpg", color:"#dbeafe", label:"Micro-interactions 🎯" },{ id:40, src:"https://picsum.photos/seed/week7-4/300/300.jpg", color:"#ede9fe", label:"UI Effects 🌟" },{ id:41, src:"https://picsum.photos/seed/week7-5/300/300.jpg", color:"#fce7f3", label:"Motion 🎪" },{ id:42, src:"https://picsum.photos/seed/week7-6/300/300.jpg", color:"#fef3c7", label:"Responsive Animations 📱" },],"Week 8": [{ id:43, src:"https://picsum.photos/seed/week8-1/300/300.jpg", color:"#d1fae5", label:"Database 🗄️" },{ id:44, src:"https://picsum.photos/seed/week8-2/300/300.jpg", color:"#dbeafe", label:"SQL 💾" },{ id:45, src:"https://picsum.photos/seed/week8-3/300/300.jpg", color:"#ede9fe", label:"Data Modeling 📊" },{ id:46, src:"https://picsum.photos/seed/week8-4/300/300.jpg", color:"#fce7f3", label:"Backend 🔌" },{ id:47, src:"https://picsum.photos/seed/week8-5/300/300.jpg", color:"#fef3c7", label:"API Connection 🌐" },{ id:48, src:"https://picsum.photos/seed/week8-6/300/300.jpg", color:"#d1fae5", label:"Data Flow 🔄" },],"Week 9": [{ id:49, src:"https://picsum.photos/seed/week9-1/300/300.jpg", color:"#dbeafe", label:"Security 🔐" },{ id:50, src:"https://picsum.photos/seed/week9-2/300/300.jpg", color:"#ede9fe", label:"Authentication 👤" },{ id:51, src:"https://picsum.photos/seed/week9-3/300/300.jpg", color:"#fce7f3", label:"JWT Tokens 🎫" },{ id:52, src:"https://picsum.photos/seed/week9-4/300/300.jpg", color:"#fef3c7", label:"User Safety 🛡️" },{ id:53, src:"https://picsum.photos/seed/week9-5/300/300.jpg", color:"#d1fae5", label:"Encryption 🔒" },{ id:54, src:"https://picsum.photos/seed/week9-6/300/300.jpg", color:"#dbeafe", label:"Security Best Practices 📋" },],"Week 10": [{ id:55, src:"https://picsum.photos/seed/week10-1/300/300.jpg", color:"#ede9fe", label:"Testing 🧪" },{ id:56, src:"https://picsum.photos/seed/week10-2/300/300.jpg", color:"#fce7f3", label:"Unit Tests 🔬" },{ id:57, src:"https://picsum.photos/seed/week10-3/300/300.jpg", color:"#fef3c7", label:"Integration Tests 🔗" },{ id:58, src:"https://picsum.photos/seed/week10-4/300/300.jpg", color:"#d1fae5", label:"Testable Code 📝" },{ id:59, src:"https://picsum.photos/seed/week10-5/300/300.jpg", color:"#dbeafe", label:"Bug Prevention 🐛" },{ id:60, src:"https://picsum.photos/seed/week10-6/300/300.jpg", color:"#ede9fe", label:"Quality Assurance ✅" },],"Week 11": [{ id:61, src:"https://picsum.photos/seed/week11-1/300/300.jpg", color:"#fce7f3", label:"API Integration 📊" },{ id:62, src:"https://picsum.photos/seed/week11-2/300/300.jpg", color:"#fef3c7", label:"External APIs 🌐" },{ id:63, src:"https://picsum.photos/seed/week11-3/300/300.jpg", color:"#d1fae5", label:"Async Data ⚡" },{ id:64, src:"https://picsum.photos/seed/week11-4/300/300.jpg", color:"#dbeafe", label:"Error Handling ⚠️" },{ id:65, src:"https://picsum.photos/seed/week11-5/300/300.jpg", color:"#ede9fe", label:"Real-world Apps 🏢" },{ id:66, src:"https://picsum.photos/seed/week11-6/300/300.jpg", color:"#fce7f3", label:"Service Communication 📡" },],"Week 12": [{ id:67, src:"https://picsum.photos/seed/week12-1/300/300.jpg", color:"#fef3c7", label:"Final Project 🎓" },{ id:68, src:"https://picsum.photos/seed/week12-2/300/300.jpg", color:"#d1fae5", label:"Frontend 🎨" },{ id:69, src:"https://picsum.photos/seed/week12-3/300/300.jpg", color:"#dbeafe", label:"Backend 🔧" },{ id:70, src:"https://picsum.photos/seed/week12-4/300/300.jpg", color:"#ede9fe", label:"Database 🗄️" },{ id:71, src:"https://picsum.photos/seed/week12-5/300/300.jpg", color:"#fce7f3", label:"Deployment 🚀" },{ id:72, src:"https://picsum.photos/seed/week12-6/300/300.jpg", color:"#fef3c7", label:"Success & Future 🌟"},],};
+const weekPhotos = {
+  "Week 1": [
+    {
+      id: 1,
+      src: "/images/week1.JPG",
+      color: "#fce7f3",
+      label: "Week 1 Photo 1 📸"
+    },
+    {
+      id: 2,
+      src: "/images/week1-1.JPG",
+      color: "#fef3c7",
+      label: "Week 1 Photo 2 📸"
+    },
+    {
+      id: 3,
+      src: "/images/week1-2.JPG",
+      color: "#d1fae5",
+      label: "Week 1 Photo 3 📸"
+    }
+  ],
+
+  "Week 2": [
+    {
+      id: 4,
+      src: "/images/week2.JPG",
+      color: "#dbeafe",
+      label: "Week 2 Photo 1 📸"
+    },
+    {
+      id: 5,
+      src: "/images/week2-1.jpg",
+      color: "#ede9fe",
+      label: "Week 2 Photo 2 📸"
+    },
+    {
+      id: 6,
+      src: "/images/week2-2.JPG",
+      color: "#fce7f3",
+      label: "Week 2 Photo 3 📸"
+    }
+  ],
+
+  "Week 3": [],
+  "Week 4": [],
+  "Week 5": [],
+  "Week 6": [],
+  "Week 7": [],
+  "Week 8": [],
+  "Week 9": [],
+  "Week 10": [],
+  "Week 11": [],
+  "Week 12": [],
+  "Week 13": [],
+  "Week 14": []
+};
 
 const initialWeekPhotos = Object.fromEntries(
   Object.entries(weekPhotos).map(([week, list]) => [week, list.slice(0, 3)])
